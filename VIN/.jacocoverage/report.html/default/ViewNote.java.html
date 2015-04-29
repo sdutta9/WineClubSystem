@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewNote.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewNote.java</span></div><h1>ViewNote.java</h1><pre class="source lang-java linenums">
+import java.util.Iterator;
+
+public class ViewNote extends ViewNoteRequest {
+
+    public ViewNote(String subid, String shipid, String wineid, String noteid) {
+<span class="nc" id="L7">        super(subid, shipid, wineid, noteid);</span>
+<span class="nc" id="L8">    }</span>
+
+    @Override
+    public ObjectResponse viewNote(Data_Store ds) {
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (Validator.missingValue(sub_id)) {</span>
+<span class="nc" id="L13">            return new ObjectResponse(1033, false, &quot;Subscriber ID must be provided&quot;);</span>
+        }
+
+<span class="nc" id="L16">        int subid = Validator.isValidNumber(sub_id);</span>
+
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (!Validator.isValidSubscriber(subid, ds.subs)) {</span>
+<span class="nc" id="L19">            return new ObjectResponse(1013, false, &quot;Invalid Subscriber ID&quot;);</span>
+        }
+
+<span class="nc bnc" id="L22" title="All 6 branches missed.">        if (Validator.missingValue(ship_id) &amp;&amp; Validator.missingValue(wine_id) &amp;&amp; Validator.missingValue(note_id)) {</span>
+            //logic to show all notes for the subId
+<span class="nc" id="L24">            Iterator&lt;Note&gt; it = ds.notes.iterator();</span>
+<span class="nc" id="L25">            int flag = 0;</span>
+<span class="nc" id="L26">            String output = &quot;{\n\t\&quot;notes\&quot;: [&quot;;</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            while (it.hasNext()) {</span>
+<span class="nc" id="L28">                Note note = it.next();</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">                if (note.getSubID() == subid) {</span>
+<span class="nc" id="L30">                    output += &quot;\n\t\t{&quot;;</span>
+<span class="nc" id="L31">                    output += &quot;\n\t\t\t\&quot;id\&quot;: &quot; + note.getNoteID() + &quot;,&quot;;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                    if (note.getShipID() != -1) {</span>
+<span class="nc" id="L33">                        output += &quot;\n\t\t\t\&quot;sid\&quot;: &quot; + note.getShipID() + &quot;,&quot;;</span>
+                    } else {
+<span class="nc" id="L35">                        output += &quot;\n\t\t\t\&quot;wid\&quot;: &quot; + note.getWineID() + &quot;,&quot;;</span>
+<span class="nc" id="L36">                        output += &quot;\n\t\t\t\&quot;wineVareity\&quot;: \&quot;&quot; + note.getWineVariety().name() + &quot;\&quot;,&quot;;</span>
+                    }
+<span class="nc" id="L38">                    output += &quot;\n\t\t\t\&quot;date\&quot;: \&quot;&quot; + note.getCreationDate() + &quot;\&quot;,&quot;;</span>
+<span class="nc" id="L39">                    output += &quot;\n\t\t\t\&quot;content\&quot;: \&quot;&quot; + note.getContent() + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L40">                    output += &quot;\n\t\t}&quot;;</span>
+<span class="nc" id="L41">                    flag = 1;</span>
+                }
+<span class="nc" id="L43">            }</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (flag == 0) {</span>
+<span class="nc" id="L45">                output += &quot;]\n}\n&quot;;</span>
+            } else {
+<span class="nc" id="L47">                output += &quot;\n\t]\n}\n&quot;;</span>
+            }
+<span class="nc" id="L49">            return new ObjectResponse(subid, true, output);</span>
+        } else {
+<span class="nc" id="L51">            int shipid = Validator.isValidNumber(ship_id);</span>
+<span class="nc" id="L52">            int wineid = Validator.isValidNumber(wine_id);</span>
+<span class="nc" id="L53">            int noteid = Validator.isValidNumber(note_id);</span>
+
+<span class="nc bnc" id="L55" title="All 6 branches missed.">            if ((wineid == -1) &amp;&amp; (noteid == 1) &amp;&amp; (!Validator.isValidShipment(shipid, ds.shipments))) {</span>
+<span class="nc" id="L56">                return new ObjectResponse(1025, false, &quot;Invalid Shipment ID&quot;);</span>
+            }
+<span class="nc bnc" id="L58" title="All 6 branches missed.">            if ((shipid == -1) &amp;&amp; (noteid == 1) &amp;&amp; (!Validator.isValidWine(wineid, ds.winelist))) {</span>
+<span class="nc" id="L59">                return new ObjectResponse(1032, false, &quot;Invalid Wine ID&quot;);</span>
+            }
+<span class="nc bnc" id="L61" title="All 6 branches missed.">            if ((shipid == -1) &amp;&amp; (wineid == 1) &amp;&amp; (!Validator.isValidNote(noteid, ds.notes))) {</span>
+<span class="nc" id="L62">                return new ObjectResponse(1040, false, &quot;Invalid Note ID&quot;);</span>
+            }
+
+<span class="nc bnc" id="L65" title="All 6 branches missed.">            if ((shipid != -1) &amp;&amp; (wineid == -1) &amp;&amp; (noteid == -1)) {</span>
+                //logic for displaying user's all shipment related notes
+<span class="nc" id="L67">                Iterator&lt;Note&gt; it = ds.notes.iterator();</span>
+<span class="nc" id="L68">                int flag = 0;</span>
+<span class="nc" id="L69">                String output = &quot;{\n\t\&quot;notes\&quot;: [&quot;;</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L71">                    Note note = it.next();</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">                    if ((note.getSubID() == subid) &amp;&amp; (note.getShipID() == shipid)) {</span>
+<span class="nc" id="L73">                        output += &quot;\n\t\t{&quot;;</span>
+<span class="nc" id="L74">                        output += &quot;\n\t\t\t\&quot;id\&quot;: &quot; + note.getNoteID() + &quot;,&quot;;</span>
+<span class="nc" id="L75">                        output += &quot;\n\t\t\t\&quot;date\&quot;: \&quot;&quot; + note.getCreationDate() + &quot;\&quot;,&quot;;</span>
+<span class="nc" id="L76">                        output += &quot;\n\t\t\t\&quot;content\&quot;: \&quot;&quot; + note.getContent() + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L77">                        output += &quot;\n\t\t}&quot;;</span>
+<span class="nc" id="L78">                        flag = 1;</span>
+                    }
+<span class="nc" id="L80">                }</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">                if (flag == 0) {</span>
+<span class="nc" id="L82">                    output += &quot;]\n}\n&quot;;</span>
+                } else {
+<span class="nc" id="L84">                    output += &quot;\n\t]\n}\n&quot;;</span>
+                }
+<span class="nc" id="L86">                return new ObjectResponse(shipid, true, output);</span>
+<span class="nc bnc" id="L87" title="All 6 branches missed.">            } else if ((shipid == -1) &amp;&amp; (wineid != -1) &amp;&amp; (noteid == -1)) {</span>
+                //logic for displaying user's all wine related notes
+<span class="nc" id="L89">                Iterator&lt;Note&gt; it = ds.notes.iterator();</span>
+<span class="nc" id="L90">                int flag = 0;</span>
+<span class="nc" id="L91">                String output = &quot;{\n\t\&quot;notes\&quot;: [&quot;;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L93">                    Note note = it.next();</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">                    if ((note.getSubID() == subid) &amp;&amp; (note.getWineID() == wineid)) {</span>
+<span class="nc" id="L95">                        output += &quot;\n\t\t{&quot;;</span>
+<span class="nc" id="L96">                        output += &quot;\n\t\t\t\&quot;id\&quot;: &quot; + note.getNoteID() + &quot;,&quot;;</span>
+<span class="nc" id="L97">                        output += &quot;\n\t\t\t\&quot;variety\&quot;: \&quot;&quot; + note.getWineVariety().name() + &quot;\&quot;,&quot;;</span>
+<span class="nc" id="L98">                        output += &quot;\n\t\t\t\&quot;date\&quot;: \&quot;&quot; + note.getCreationDate() + &quot;\&quot;,&quot;;</span>
+<span class="nc" id="L99">                        output += &quot;\n\t\t\t\&quot;content\&quot;: \&quot;&quot; + note.getContent() + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L100">                        output += &quot;\n\t\t}&quot;;</span>
+<span class="nc" id="L101">                        flag = 1;</span>
+                    }
+<span class="nc" id="L103">                }</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                if (flag == 0) {</span>
+<span class="nc" id="L105">                    output += &quot;]\n}\n&quot;;</span>
+                } else {
+<span class="nc" id="L107">                    output += &quot;\n\t]\n}\n&quot;;</span>
+                }
+<span class="nc" id="L109">                return new ObjectResponse(shipid, true, output);</span>
+<span class="nc bnc" id="L110" title="All 6 branches missed.">            } else if ((shipid == -1) &amp;&amp; (wineid == -1) &amp;&amp; (noteid != -1)) {</span>
+                //logic for displaying user's note based on note number.
+<span class="nc" id="L112">                Iterator&lt;Note&gt; it = ds.notes.iterator();</span>
+<span class="nc" id="L113">                int flag = 0;</span>
+<span class="nc" id="L114">                String output = &quot;{&quot;;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L116">                    Note note = it.next();</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">                    if ((note.getSubID() == subid) &amp;&amp; (note.getNoteID() == noteid)) {</span>
+<span class="nc" id="L118">                        output += &quot;\n\t\&quot;id\&quot;: &quot; + note.getNoteID() + &quot;,&quot;;</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                        if (note.getShipID() != -1) {</span>
+<span class="nc" id="L120">                            output += &quot;\n\t\&quot;sid\&quot;: &quot; + note.getShipID() + &quot;,&quot;;</span>
+                        } else {
+<span class="nc" id="L122">                            output += &quot;\n\t\&quot;wid\&quot;: &quot; + note.getWineID() + &quot;,&quot;;</span>
+<span class="nc" id="L123">                            output += &quot;\n\t\&quot;variety\&quot;: \&quot;&quot; + note.getWineVariety().name() + &quot;\&quot;,&quot;;</span>
+                        }
+<span class="nc" id="L125">                        output += &quot;\n\t\&quot;date\&quot;: \&quot;&quot; + note.getCreationDate() + &quot;\&quot;,&quot;;</span>
+<span class="nc" id="L126">                        output += &quot;\n\t\&quot;content\&quot;: \&quot;&quot; + note.getContent() + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L127">                        output += &quot;\n}\n&quot;;</span>
+<span class="nc" id="L128">                        flag = 1;</span>
+<span class="nc" id="L129">                        break;</span>
+                    }
+<span class="nc" id="L131">                }</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">                if (flag == 0) {</span>
+<span class="nc" id="L133">                    return new ObjectResponse(1040, false, &quot;Invalid Note ID&quot;);</span>
+                } else {
+<span class="nc" id="L135">                    return new ObjectResponse(noteid, true, output);</span>
+                }
+            } else {
+<span class="nc" id="L138">                return new ObjectResponse(1038, false, &quot;Either Shipment ID, Wine ID or Note ID should be provided&quot;);</span>
+            }
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

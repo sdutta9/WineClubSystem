@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddSubscriber.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddSubscriber.java</span></div><h1>AddSubscriber.java</h1><pre class="source lang-java linenums">
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class AddSubscriber extends AddSubscriberRequest {
+    private Address a;
+    private Subscriber s;
+
+    public AddSubscriber(String street, String city, String state, String zip,
+                    String name, String email, String phone, String tw, String fb) {
+<span class="nc" id="L11">        super(street, city, state, zip, name, email, phone, tw, fb);</span>
+<span class="nc" id="L12">    }</span>
+
+
+    @Override
+    public ObjectResponse addAccount(Data_Store ds) {
+<span class="nc" id="L17">        String error=&quot;{\n\t\&quot;errors\&quot;: [\n&quot;;</span>
+<span class="nc" id="L18">        int flag =0;</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if(Validator.missingValue(this.name)){</span>
+<span class="nc" id="L20">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L21">            error+=&quot;\t\t\t\&quot;code\&quot;: 1000,\n&quot;;</span>
+<span class="nc" id="L22">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Name must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L23">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if(Validator.missingValue(this.email)){</span>
+<span class="nc" id="L26">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L27">            error+=&quot;\t\t\t\&quot;code\&quot;: 1002,\n&quot;;</span>
+<span class="nc" id="L28">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Email address must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L29">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(Validator.missingValue(this.street)){</span>
+<span class="nc" id="L32">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L33">            error+=&quot;\t\t\t\&quot;code\&quot;: 1004,\n&quot;;</span>
+<span class="nc" id="L34">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Address must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L35">            flag = 1;</span>
+        }        
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(Validator.missingValue(this.city)){</span>
+<span class="nc" id="L38">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L39">            error+=&quot;\t\t\t\&quot;code\&quot;: 1006,\n&quot;;</span>
+<span class="nc" id="L40">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;City must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L41">            flag = 1;</span>
+        } 
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(Validator.missingValue(this.state)){</span>
+<span class="nc" id="L44">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L45">            error+=&quot;\t\t\t\&quot;code\&quot;: 1008,\n&quot;;</span>
+<span class="nc" id="L46">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;State must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L47">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if(Validator.missingValue(this.zip)){</span>
+<span class="nc" id="L50">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L51">            error+=&quot;\t\t\t\&quot;code\&quot;: 1010,\n&quot;;</span>
+<span class="nc" id="L52">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;ZIP code must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L53">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if(Validator.missingValue(this.phone)){</span>
+<span class="nc" id="L56">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L57">            error+=&quot;\t\t\t\&quot;code\&quot;: 1012,\n&quot;;</span>
+<span class="nc" id="L58">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Phone number must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L59">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if(flag == 1){</span>
+<span class="nc" id="L62">            error+=&quot;]\n}\n&quot;;</span>
+<span class="nc" id="L63">            return new ObjectResponse(-1, false,error);</span>
+        }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if(!Validator.isValidName(this.name)){</span>
+<span class="nc" id="L66">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L67">            error+=&quot;\t\t\t\&quot;code\&quot;: 1001,\n&quot;;</span>
+<span class="nc" id="L68">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Bad name\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L69">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if(!Validator.isValidEmail(this.email)){</span>
+<span class="nc" id="L72">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L73">            error+=&quot;\t\t\t\&quot;code\&quot;: 1003,\n&quot;;</span>
+<span class="nc" id="L74">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Invalid email address\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L75">            flag = 1;</span>
+        }       
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(!Validator.isValidAddress(this.street)){</span>
+<span class="nc" id="L78">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L79">            error+=&quot;\t\t\t\&quot;code\&quot;: 1005,\n&quot;;</span>
+<span class="nc" id="L80">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Bad address\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L81">            flag = 1;</span>
+        }        
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if(!Validator.isValidCity(this.city)){</span>
+<span class="nc" id="L84">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L85">            error+=&quot;\t\t\t\&quot;code\&quot;: 1007,\n&quot;;</span>
+<span class="nc" id="L86">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Bad city\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L87">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (Validator.addressInBannedState(this.state)){</span>
+<span class="nc" id="L90">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L91">            error+=&quot;\t\t\t\&quot;code\&quot;: 1009,\n&quot;;</span>
+<span class="nc" id="L92">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;We may not ship to this state\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L93">            flag = 1;</span>
+        } 
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if(!Validator.isValidZip(this.zip)){</span>
+<span class="nc" id="L96">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="nc" id="L97">            error+=&quot;\t\t\t\&quot;code\&quot;: 1011,\n&quot;;</span>
+<span class="nc" id="L98">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Bad ZIP code\&quot;\n\t\t}\n&quot;;</span>
+<span class="nc" id="L99">            flag = 1;</span>
+        }
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if(flag == 1){</span>
+<span class="nc" id="L102">            error+=&quot;]\n}\n&quot;;</span>
+<span class="nc" id="L103">            return new ObjectResponse(-1, false,error);</span>
+        }
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (userHasAccount(ds.subs, this.email)) {</span>
+<span class="nc" id="L106">            return new ObjectResponse(1014, false, &quot;An account with this email address exists&quot;);</span>
+        } else {
+<span class="nc" id="L108">            a = new Address(this.street, this.city, this.state, this.zip);</span>
+<span class="nc" id="L109">            s = new Subscriber (this.name, this.email, this.phone, a, this.facebook, this.twitter);</span>
+<span class="nc" id="L110">            ds.subs.add(s);</span>
+            
+<span class="nc" id="L112">            Iterator&lt;MonthlySelection&gt; it = ds.mselections.iterator();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            while(it.hasNext()){</span>
+<span class="nc" id="L114">                MonthlySelection ms = it.next();</span>
+
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                if(ms.isMatchMST(s.getDeliveryYearMonth().toString(), s.getPreference().name())){</span>
+<span class="nc" id="L117">                    Shipment shipment = new Shipment(s.getID(),s.getDeliveryDt(),s.getPreference());</span>
+<span class="nc" id="L118">                    ds.shipments.add(shipment);</span>
+                }
+<span class="nc" id="L120">            }</span>
+            
+<span class="nc" id="L122">            String output = &quot;{\n\t\&quot;uid\&quot;: &quot;+s.getID()+&quot;\n}&quot;;</span>
+<span class="nc" id="L123">            return new ObjectResponse(s.getID(), true, output);</span>
+        }
+    }
+    public boolean userHasAccount(HashSet&lt;Subscriber&gt; subs, String e) {
+<span class="nc" id="L127">        Iterator&lt;Subscriber&gt; it = subs.iterator();</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        while (it.hasNext()) {</span>
+<span class="nc" id="L129">            Subscriber sub = it.next();</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (sub.isMatch(e)) </span>
+<span class="nc" id="L131">                return true;                                    </span>
+<span class="nc" id="L132">        }</span>
+<span class="nc" id="L133">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

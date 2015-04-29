@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Helper_Partner.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Helper_Partner.java</span></div><h1>Helper_Partner.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">public class Helper_Partner {</span>
+    public static void viewSubscriber_list(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L4">        ViewUndeliveredListRequest a = new ViewUndeliveredList();</span>
+<span class="nc" id="L5">        ObjectResponse r = a.viewUndeliveredList(ds);</span>
+<span class="nc" id="L6">        r.printResponse();    </span>
+<span class="nc" id="L7">    }</span>
+    public static void AddReceipt(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L10">        String sid = null, rname = null;</span>
+        
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L13" title="All 10 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L14">                case &quot;-sid&quot;:sid = args[++i];</span>
+<span class="nc" id="L15">                            break;                            </span>
+<span class="nc" id="L16">                case &quot;-n&quot;:  rname=args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L18" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L20">                                        break;</span>
+                                    else
+<span class="nc" id="L22">                                        rname+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L28">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L29">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L32">        AddReceiptRequest a = new AddReceipt(sid, rname);</span>
+<span class="nc" id="L33">        ObjectResponse r = a.addReceipt(ds);</span>
+<span class="nc" id="L34">        r.printResponse();</span>
+<span class="nc" id="L35">    }</span>
+    
+    public static void ViewReceipt(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L39">        String rid = null;</span>
+        
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L42" title="All 6 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L43">                case &quot;-rid&quot;:rid = args[++i];</span>
+<span class="nc" id="L44">                            break;                            </span>
+<span class="nc" id="L45">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L46">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L49">        ViewReceiptRequest a = new ViewReceipt(rid);</span>
+<span class="nc" id="L50">        ObjectResponse r = a.viewReceipt(ds);</span>
+<span class="nc" id="L51">        r.printResponse();</span>
+<span class="nc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

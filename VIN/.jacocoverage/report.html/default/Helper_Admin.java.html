@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Helper_Admin.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Helper_Admin.java</span></div><h1>Helper_Admin.java</h1><pre class="source lang-java linenums">
+<span class="nc" id="L2">public class Helper_Admin {</span>
+
+    public static void addAdmin(Data_Store ds, String[] args) {
+<span class="nc" id="L5">        String name=null;               </span>
+<span class="nc bnc" id="L6" title="All 2 branches missed.">        if(args.length&gt;3){</span>
+<span class="nc bnc" id="L7" title="All 2 branches missed.">            if(&quot;-n&quot;.equals(args[2].toLowerCase())){</span>
+<span class="nc" id="L8">                int i =2;</span>
+<span class="nc" id="L9">                name=args[++i];</span>
+                for(;;){
+<span class="nc bnc" id="L11" title="All 2 branches missed.">                    if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">                        if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L13">                            break;</span>
+                        else
+<span class="nc" id="L15">                            name+=&quot; &quot;+args[++i];</span>
+                    }
+                    else
+                        break;                            
+                }
+<span class="nc" id="L20">                AddAdminRequest a = new AddAdmin(name);</span>
+<span class="nc" id="L21">                ObjectResponse r = a.addAdmin(ds);</span>
+<span class="nc" id="L22">                r.printResponse(); </span>
+<span class="nc" id="L23">            }</span>
+            else{          
+<span class="nc" id="L25">                System.out.println(&quot;Error: Cannot recognize [&quot;+args[2]+&quot;] command&quot;);</span>
+<span class="nc" id="L26">                System.exit(0);</span>
+            }
+        }
+        else{          
+<span class="nc" id="L30">            System.out.println(&quot;Error: Invalid command&quot;);</span>
+<span class="nc" id="L31">            System.exit(0);</span>
+        }
+        
+<span class="nc" id="L34">    }</span>
+
+    public static void modifyAdmin(Data_Store ds, String[] args) {
+<span class="nc" id="L37">        String aid = null, name = null;</span>
+        
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L40" title="All 10 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L41">                case &quot;-aid&quot;:aid =args[++i];</span>
+<span class="nc" id="L42">                            break;                            </span>
+<span class="nc" id="L43">                case &quot;-n&quot;:  name=args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L47">                                        break;</span>
+                                    else
+<span class="nc" id="L49">                                        name+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L55">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L56">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L59">        ModifyAdminRequest a = new ModifyAdmin(aid,name);</span>
+<span class="nc" id="L60">        ObjectResponse r = a.modifyAdmin(ds);</span>
+<span class="nc" id="L61">        r.printResponse();</span>
+<span class="nc" id="L62">    }</span>
+
+    public static void viewAdmin(Data_Store ds, String[] args) {
+<span class="nc" id="L65">        String aid = null;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if(args.length &gt; 3){</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if(&quot;-aid&quot;.equals(args[2].toLowerCase()))</span>
+<span class="nc" id="L68">                aid =args[3];</span>
+            else{
+<span class="nc" id="L70">                System.out.println(&quot;Error: Cannot recognize [&quot;+args[2]+&quot;] command&quot;);</span>
+<span class="nc" id="L71">                System.exit(0);</span>
+            }
+<span class="nc" id="L73">            ViewAdminRequest a = new ViewAdmin(aid);</span>
+<span class="nc" id="L74">            ObjectResponse r = a.viewAdmin(ds);</span>
+<span class="nc" id="L75">            r.printResponse();</span>
+<span class="nc" id="L76">        }</span>
+        else{          
+<span class="nc" id="L78">            System.out.println(&quot;Error: Invalid command&quot;);</span>
+<span class="nc" id="L79">            System.exit(0);</span>
+        }
+<span class="nc" id="L81">    }</span>
+
+    public static void addMonthlySelection(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L85">        String aid=null, type=null, ymonth = null,filename = null;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L87" title="All 18 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L88">                case &quot;-aid&quot;:aid =args[++i];</span>
+<span class="nc" id="L89">                            break;                            </span>
+<span class="nc" id="L90">                case &quot;-wt&quot;: type=args[++i];</span>
+<span class="nc" id="L91">                            break;</span>
+<span class="nc" id="L92">                case &quot;-ym&quot;:  ymonth = args[++i];</span>
+<span class="nc" id="L93">                            break;</span>
+<span class="nc" id="L94">                case &quot;-f&quot;:  filename = args[++i];</span>
+<span class="nc" id="L95">                            break;</span>
+<span class="nc" id="L96">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L97">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L100">        AddMonthlySelectionRequest a = new AddMonthlySelection(aid, type, ymonth, filename);</span>
+<span class="nc" id="L101">        ObjectResponse r = a.addMonthlySelection(ds);</span>
+<span class="nc" id="L102">        r.printResponse();</span>
+<span class="nc" id="L103">    }</span>
+
+    public static void viewMonthlySelection(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L107">        String mid=null;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L109" title="All 6 branches missed.">            switch(args[i].toLowerCase()){                           </span>
+<span class="nc" id="L110">                case &quot;-id&quot;:  mid=args[++i];</span>
+<span class="nc" id="L111">                            break;</span>
+<span class="nc" id="L112">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L113">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L116">        ViewMonthlySelectionRequest a = new ViewMonthlySelection(mid);</span>
+<span class="nc" id="L117">        ObjectResponse r = a.viewMonthlySelection(ds);</span>
+<span class="nc" id="L118">        r.printResponse();</span>
+<span class="nc" id="L119">    }</span>
+    public static void viewRevenue(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L122">        String sdt=null, edt=null;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L124" title="All 10 branches missed.">            switch(args[i].toLowerCase()){                         </span>
+<span class="nc" id="L125">                case &quot;-s&quot;:      sdt = args[++i];</span>
+<span class="nc" id="L126">                                break;</span>
+<span class="nc" id="L127">                case &quot;-e&quot;:      edt = args[++i];</span>
+<span class="nc" id="L128">                                break;</span>
+<span class="nc" id="L129">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L130">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L133">        ViewRevenueRequest a = new ViewRevenue(sdt, edt);</span>
+<span class="nc" id="L134">        ObjectResponse r = a.viewRevenue(ds);</span>
+<span class="nc" id="L135">        r.printResponse();</span>
+<span class="nc" id="L136">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

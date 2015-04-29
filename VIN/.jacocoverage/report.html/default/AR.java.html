@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AR.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AR.java</span></div><h1>AR.java</h1><pre class="source lang-java linenums">public class AR extends MonthlySelection implements java.io.Serializable {
+
+    public AR() {
+<span class="fc" id="L4">        super();</span>
+<span class="fc" id="L5">        super.mst = MonthlySelectionType.AR;</span>
+<span class="fc" id="L6">    }</span>
+    public AR(String ym,int aid){   // Must be in the yyyy-mm format
+<span class="fc" id="L8">        super(ym,aid);</span>
+<span class="fc" id="L9">        super.mst = MonthlySelectionType.AR;</span>
+<span class="fc" id="L10">    }</span>
+    @Override
+    void addWine(Wine w) {
+            // Make sure only red and rose wines are added
+<span class="pc bpc" id="L14" title="1 of 4 branches missed.">        if((w.getVariety() == WineVariety.RED)||(w.getVariety() == WineVariety.ROSE))</span>
+<span class="fc" id="L15">            ms.add(w);</span>
+<span class="fc" id="L16">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

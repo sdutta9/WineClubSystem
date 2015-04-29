@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddMonthlySelection.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddMonthlySelection.java</span></div><h1>AddMonthlySelection.java</h1><pre class="source lang-java linenums">
+import java.io.File;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.format.DateTimeParseException;
+import java.util.Iterator;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class AddMonthlySelection extends AddMonthlySelectionRequest {
+    private MonthlySelection ms;
+    
+    public AddMonthlySelection(String aid, String mstype,String ymonth, String filename) {
+<span class="nc" id="L18">	super(aid,mstype,ymonth,filename);</span>
+<span class="nc" id="L19">    }</span>
+    @Override
+    public ObjectResponse addMonthlySelection(Data_Store ds) {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        if(Validator.missingValue(a_id))</span>
+<span class="nc" id="L23">            return new ObjectResponse(1043,false,&quot;Admin ID must be provided&quot;);</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        if(Validator.missingValue(this.mst))</span>
+<span class="nc" id="L25">            return new ObjectResponse(1018, false, &quot;Type must be provided&quot;);</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if(Validator.missingValue(this.ym))</span>
+<span class="nc" id="L27">            return new ObjectResponse(1020, false,&quot;Selection month and year must be provided&quot;);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(Validator.missingValue(this.filename))</span>
+<span class="nc" id="L29">            return new ObjectResponse(1015, false,&quot;File name must be provided&quot;);</span>
+        
+<span class="nc" id="L31">        int aid =Validator.isValidNumber(a_id);</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(!Validator.isValidAdmin(aid, ds.adms))</span>
+<span class="nc" id="L33">            return new ObjectResponse(1023, false,&quot;Invalid Admin ID&quot;);</span>
+        
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(!Validator.isValidMSType(this.mst))</span>
+<span class="nc" id="L36">            return new ObjectResponse(1019, false,&quot;Type can be either RW, AW, AR.&quot;);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(!Validator.isValidYearMonth(this.ym))</span>
+<span class="nc" id="L38">            return new ObjectResponse(1021, false,&quot;Selection month and year must be yyyy-mm format&quot;);</span>
+        
+<span class="nc" id="L40">        Iterator&lt;MonthlySelection&gt; it_ms = ds.mselections.iterator();</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        while(it_ms.hasNext()){</span>
+<span class="nc" id="L42">            MonthlySelection tempMS = it_ms.next();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if(tempMS.isMatchMST(ym, mst))</span>
+<span class="nc" id="L44">                return new ObjectResponse(1045,false,&quot;Monthly Selection already added for the given wine type&quot;);</span>
+<span class="nc" id="L45">        }</span>
+        
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(this.mst.equalsIgnoreCase(&quot;AR&quot;))</span>
+<span class="nc" id="L48">            ms = new AR(this.ym,aid);</span>
+        
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        else if(this.mst.equalsIgnoreCase(&quot;AW&quot;))</span>
+<span class="nc" id="L51">            ms = new AW(this.ym,aid);</span>
+        else
+<span class="nc" id="L53">            ms = new RW(this.ym,aid);</span>
+        
+<span class="nc" id="L55">        File file=new File(this.filename);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(!file.exists())</span>
+<span class="nc" id="L57">            return new ObjectResponse(1016,false,&quot;File not found&quot;);</span>
+        try{            
+<span class="nc" id="L59">            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="nc" id="L60">            DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="nc" id="L61">            Document doc = db.parse(file);</span>
+            
+<span class="nc" id="L63">            Element docele=doc.getDocumentElement();</span>
+<span class="nc" id="L64">            NodeList memberlist=docele.getElementsByTagName(&quot;Wine&quot;);</span>
+            //System.out.println(&quot;Total Subscribers: &quot;+memberlist.getLength());
+           
+<span class="nc" id="L67">            WineVariety wv=null;</span>
+<span class="nc" id="L68">            WineType wt=null;</span>
+<span class="nc" id="L69">            String variety=null, type=null, lbl=null, grape=null, region=null, country=null, maker=null;</span>
+<span class="nc" id="L70">            Year year=null;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            for(int i=0;i&lt;memberlist.getLength();i++){</span>
+<span class="nc" id="L72">                Node node=memberlist.item(i);</span>
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">                if(node.getNodeType()==Node.ELEMENT_NODE){</span>
+                    //System.out.println(&quot;----------------------&quot;);
+<span class="nc" id="L76">                    Element e=(Element)node;</span>
+
+<span class="nc" id="L78">                    NodeList nodelist=e.getElementsByTagName(&quot;variety&quot;);</span>
+                    //System.out.println(&quot;variety: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L80">                    variety = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">                    if(variety.equalsIgnoreCase(&quot;red&quot;))</span>
+<span class="nc" id="L82">                        wv=WineVariety.RED;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">                    else if(variety.equalsIgnoreCase(&quot;white&quot;))</span>
+<span class="nc" id="L84">                        wv= WineVariety.WHITE;</span>
+                    else
+<span class="nc" id="L86">                        wv =WineVariety.ROSE;</span>
+                    
+<span class="nc" id="L88">                    nodelist=e.getElementsByTagName(&quot;wine_type&quot;);</span>
+                    //System.out.println(&quot;type: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L90">                    type = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                    if(type.equalsIgnoreCase(&quot;table&quot;))</span>
+<span class="nc" id="L92">                        wt =WineType.TABLE;</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                    else if(type.equalsIgnoreCase(&quot;sparkling&quot;))</span>
+<span class="nc" id="L94">                        wt = WineType.SPARKLING;</span>
+                    else
+<span class="nc" id="L96">                        wt = WineType.SWEET;</span>
+                    
+<span class="nc" id="L98">                    nodelist=e.getElementsByTagName(&quot;label_name&quot;);</span>
+                    //System.out.println(&quot;label: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L100">                    lbl = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+
+<span class="nc" id="L102">                    nodelist=e.getElementsByTagName(&quot;grape&quot;);</span>
+                    //System.out.println(&quot;grape: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L104">                    grape = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+
+<span class="nc" id="L106">                    nodelist=e.getElementsByTagName(&quot;region&quot;);</span>
+                    //System.out.println(&quot;region: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L108">                    region = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+
+<span class="nc" id="L110">                    nodelist=e.getElementsByTagName(&quot;country&quot;);</span>
+                    //System.out.println(&quot;country: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L112">                    country = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+
+<span class="nc" id="L114">                    nodelist=e.getElementsByTagName(&quot;maker&quot;);</span>
+                    //System.out.println(&quot;maker: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L116">                    maker = nodelist.item(0).getChildNodes().item(0).getNodeValue();</span>
+
+                    try{
+<span class="nc" id="L119">                    nodelist=e.getElementsByTagName(&quot;year&quot;);</span>
+                    //System.out.println(&quot;Year: &quot;+nodelist.item(0).getChildNodes().item(0).getNodeValue());
+<span class="nc" id="L121">                    year = Year.parse(nodelist.item(0).getChildNodes().item(0).getNodeValue());</span>
+                    }
+<span class="nc" id="L123">                    catch(DateTimeParseException dpe){</span>
+<span class="nc" id="L124">                        year = Year.parse(&quot;2011&quot;); </span>
+<span class="nc" id="L125">                    }</span>
+                    
+<span class="nc" id="L127">                    Iterator&lt;Wine&gt; it =ds.winelist.iterator();</span>
+<span class="nc" id="L128">                    int flag = 0;</span>
+<span class="nc" id="L129">                    Wine temp=null;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                    while(it.hasNext()){</span>
+<span class="nc" id="L131">                        temp = it.next();</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">                        if(temp.isMatch(lbl)){</span>
+<span class="nc" id="L133">                            flag = 1;</span>
+<span class="nc" id="L134">                            break;</span>
+                        }
+                    }                    
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                    if(flag == 0){</span>
+<span class="nc" id="L138">                        Wine w = new Wine(wv,wt,lbl,grape,region,country,maker,year);</span>
+<span class="nc" id="L139">                        ds.winelist.add(w);</span>
+<span class="nc" id="L140">                        ms.addWine(w);</span>
+<span class="nc" id="L141">                    }else</span>
+<span class="nc" id="L142">                        ms.addWine(temp);</span>
+                }                
+            }//end of for
+<span class="nc" id="L145">            ds.mselections.add(ms);</span>
+            
+            //adding all shipments
+<span class="nc" id="L148">            addShipments(ds);</span>
+<span class="nc" id="L149">            String output = &quot;{\n\t\&quot;id\&quot;: &quot;+ms.getID()+&quot;\n}\n&quot;;</span>
+<span class="nc" id="L150">            return new ObjectResponse(ms.getID(),true,output);    </span>
+<span class="nc" id="L151">        }catch(Exception e){</span>
+<span class="nc" id="L152">            System.out.println(e);</span>
+        } 
+<span class="nc" id="L154">        return new ObjectResponse(1022,false,&quot;File contains error.Cannot load.&quot;);</span>
+    }
+    
+    private void addShipments(Data_Store ds){
+        
+<span class="nc" id="L159">        YearMonth ymonth = YearMonth.parse(this.ym);</span>
+        
+<span class="nc" id="L161">        Iterator&lt;Subscriber&gt; sub_itr = ds.subs.iterator();</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        while(sub_itr.hasNext()){</span>
+<span class="nc" id="L163">            Subscriber sub =sub_itr.next();</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if(!ymonth.equals(sub.getDeliveryYearMonth()))</span>
+<span class="nc" id="L165">                continue;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if(!sub.getPreference().name().equalsIgnoreCase(this.mst))</span>
+<span class="nc" id="L167">                continue;</span>
+<span class="nc" id="L168">            Iterator&lt;Shipment&gt; ship_itr = ds.shipments.iterator();</span>
+<span class="nc" id="L169">            boolean shipmentPresent = false;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            while(ship_itr.hasNext()){</span>
+<span class="nc" id="L171">                Shipment s = ship_itr.next();</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">                if(s.isMatch(sub.getID(), sub.getDeliveryDt())){</span>
+<span class="nc" id="L173">                    shipmentPresent = true;</span>
+<span class="nc" id="L174">                    break;</span>
+                }
+<span class="nc" id="L176">            }</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if(shipmentPresent)</span>
+<span class="nc" id="L178">                continue;</span>
+            else{
+<span class="nc" id="L180">                Shipment temp = new Shipment(sub.getID(),sub.getDeliveryDt(),sub.getPreference());</span>
+<span class="nc" id="L181">                ds.shipments.add(temp);</span>
+            }                
+<span class="nc" id="L183">        }</span>
+<span class="nc" id="L184">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>vin.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">vin.java</span></div><h1>vin.java</h1><pre class="source lang-java linenums">
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+
+<span class="nc" id="L9">public class vin {</span>
+    public static void main(String[] args) {
+<span class="nc" id="L11">        Data_Store datastore =null;</span>
+               
+	try {
+<span class="nc" id="L14">            datastore = restoreDataStoreState(datastore);            </span>
+<span class="nc" id="L15">	} catch (IOException e) {</span>
+<span class="nc" id="L16">            System.err.println(&quot;IOException caught when trying to restore state&quot;);</span>
+<span class="nc" id="L17">	}</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(datastore == null)</span>
+<span class="nc" id="L19">            datastore = new Data_Store();</span>
+        else
+<span class="nc" id="L21">            IdGenerator.setID(datastore.lastid);</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        if(args.length == 0){</span>
+<span class="nc" id="L23">            System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L24">            System.exit(0);</span>
+        }       
+        
+<span class="nc bnc" id="L27" title="All 30 branches missed.">        switch(args[0].toLowerCase()){</span>
+            case &quot;subscriber&quot;:
+<span class="nc bnc" id="L29" title="All 26 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L30">                    case &quot;add&quot;: Helper_Subscriber.addSubscriber(datastore, args);</span>
+<span class="nc" id="L31">                                break;</span>
+<span class="nc" id="L32">                    case &quot;modify&quot;:  Helper_Subscriber.modifySubscriber(datastore,args);</span>
+<span class="nc" id="L33">                                    break;</span>
+<span class="nc" id="L34">                    case &quot;view&quot;:    Helper_Subscriber.viewSubscriber(datastore,args);</span>
+<span class="nc" id="L35">                                    break;</span>
+<span class="nc" id="L36">                    case &quot;load&quot;:    Helper_Subscriber.loadSubscriber(datastore, args);</span>
+<span class="nc" id="L37">                                    break;</span>
+<span class="nc" id="L38">                    case &quot;search&quot;:  Helper_Subscriber.searchAccount(datastore, args);</span>
+<span class="nc" id="L39">                                    break;</span>
+                    case &quot;changemix&quot;:  
+<span class="nc" id="L41">                                    Helper_Subscriber.changeWineMix(datastore, args);</span>
+<span class="nc" id="L42">                                    break;</span>
+                    default:
+<span class="nc" id="L44">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L45">                        System.exit(0); </span>
+                }                
+<span class="nc" id="L47">                break;</span>
+            case &quot;admin&quot;:                
+<span class="nc bnc" id="L49" title="All 26 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L50">                    case &quot;add&quot;:     Helper_Admin.addAdmin(datastore,args);</span>
+<span class="nc" id="L51">                                    break;</span>
+<span class="nc" id="L52">                    case &quot;modify&quot;:  Helper_Admin.modifyAdmin(datastore,args);</span>
+<span class="nc" id="L53">                                    break;</span>
+<span class="nc" id="L54">                    case &quot;view&quot;:    Helper_Admin.viewAdmin(datastore,args);</span>
+<span class="nc" id="L55">                                    break;</span>
+                    case &quot;add_monthly_selection&quot;:   //addMonthlySelection.java 
+<span class="nc" id="L57">                                    Helper_Admin.addMonthlySelection(datastore,args);</span>
+<span class="nc" id="L58">                                    break;</span>
+                    case &quot;view_monthly_selection&quot;:   //viewMonthlySelection.java
+<span class="nc" id="L60">                                    Helper_Admin.viewMonthlySelection(datastore,args);</span>
+<span class="nc" id="L61">                                    break;</span>
+<span class="nc" id="L62">                    case &quot;revenue&quot;: Helper_Admin.viewRevenue(datastore, args);</span>
+<span class="nc" id="L63">                                    break;          </span>
+                    default:
+<span class="nc" id="L65">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L66">                        System.exit(0); </span>
+                }        
+<span class="nc" id="L68">                break;</span>
+            case &quot;shipments&quot;:
+<span class="nc bnc" id="L70" title="All 10 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L71">                    case &quot;view&quot;:    Helper_Shipment.viewShipment(datastore, args);</span>
+<span class="nc" id="L72">                                    break;</span>
+<span class="nc" id="L73">                    case &quot;cancel&quot;:  Helper_Shipment.cancelShipment(datastore, args);</span>
+<span class="nc" id="L74">                                    break;</span>
+                    default:
+<span class="nc" id="L76">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L77">                        System.exit(0); </span>
+                }                
+<span class="nc" id="L79">                break;</span>
+            case &quot;wines&quot;:
+<span class="nc bnc" id="L81" title="All 10 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L82">                    case &quot;view&quot;:    Helper_Wine.viewWines(datastore, args);</span>
+<span class="nc" id="L83">                                    break;</span>
+<span class="nc" id="L84">                    case &quot;rate&quot;:    Helper_Wine.rateWine(datastore, args);</span>
+<span class="nc" id="L85">                                    break;</span>
+                    default:
+<span class="nc" id="L87">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L88">                        System.exit(0); </span>
+                }                
+<span class="nc" id="L90">                break; </span>
+            case &quot;delivery&quot;:
+<span class="nc bnc" id="L92" title="All 6 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L93">                    case &quot;view&quot;:    Helper_Delivery.viewDeliveryTime(datastore, args);</span>
+<span class="nc" id="L94">                                    break;</span>
+                    default:
+<span class="nc" id="L96">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L97">                        System.exit(0); </span>
+                }
+<span class="nc" id="L99">                break;    </span>
+            
+            case &quot;notes&quot;:
+<span class="nc bnc" id="L102" title="All 18 branches missed.">                 switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L103">                    case &quot;add&quot;:     Helper_Notes.addNote(datastore, args);</span>
+<span class="nc" id="L104">                                    break;</span>
+<span class="nc" id="L105">                    case &quot;view&quot;:    Helper_Notes.viewNote(datastore, args);</span>
+<span class="nc" id="L106">                                    break;</span>
+<span class="nc" id="L107">                    case &quot;modify&quot;:  Helper_Notes.modifyNote(datastore, args);</span>
+<span class="nc" id="L108">                                    break;</span>
+<span class="nc" id="L109">                    case &quot;delete&quot;:  Helper_Notes.deleteNote(datastore, args);</span>
+<span class="nc" id="L110">                                    break;</span>
+                    default:
+<span class="nc" id="L112">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L113">                        System.exit(0); </span>
+                }
+<span class="nc" id="L115">                break;</span>
+            
+            case &quot;partner&quot;:
+<span class="nc bnc" id="L118" title="All 14 branches missed.">                switch(args[1].toLowerCase()){</span>
+<span class="nc" id="L119">                    case &quot;subscriber_list&quot;: Helper_Partner.viewSubscriber_list(datastore, args);</span>
+<span class="nc" id="L120">                                            break;</span>
+<span class="nc" id="L121">                    case &quot;add_receipt&quot;:     Helper_Partner.AddReceipt(datastore, args);</span>
+<span class="nc" id="L122">                                            break; </span>
+<span class="nc" id="L123">                    case &quot;view_receipt&quot;:    Helper_Partner.ViewReceipt(datastore, args);</span>
+<span class="nc" id="L124">                                            break;</span>
+                    default:
+<span class="nc" id="L126">                        System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L127">                        System.exit(0);     </span>
+                }
+<span class="nc" id="L129">                break;</span>
+            default:
+<span class="nc" id="L131">               System.out.println(&quot;Error: Please enter a valid command&quot;);</span>
+<span class="nc" id="L132">               System.exit(0); </span>
+        }
+        
+        try {
+<span class="nc" id="L136">            datastore.lastid=IdGenerator.getID();</span>
+<span class="nc" id="L137">            saveDataStoreState(datastore);</span>
+<span class="nc" id="L138">	} catch (IOException e) {</span>
+<span class="nc" id="L139">            System.err.println(&quot;IOException caught when trying to save state.\n&quot;);</span>
+<span class="nc" id="L140">	}</span>
+        
+<span class="nc" id="L142">    }//end of main function</span>
+    
+    
+    public static void saveDataStoreState(Data_Store ds) throws IOException {
+<span class="nc" id="L146">        FileOutputStream fout = null;</span>
+<span class="nc" id="L147">        ObjectOutputStream oos = null;</span>
+        try {
+<span class="nc" id="L149">            fout = new FileOutputStream(&quot;../Shouvik_Dutta.ser&quot;,false);</span>
+<span class="nc" id="L150">            oos = new ObjectOutputStream(fout);</span>
+<span class="nc" id="L151">            oos.writeObject(ds);</span>
+            
+<span class="nc" id="L153">        }catch(IOException e){</span>
+<span class="nc" id="L154">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if(oos != null) </span>
+<span class="nc" id="L158">                oos.close();</span>
+        }
+<span class="nc" id="L160">    }</span>
+	
+    public static Data_Store restoreDataStoreState(Data_Store ds) throws IOException {
+<span class="nc" id="L163">        ObjectInputStream ois = null;</span>
+        try {
+<span class="nc" id="L165">                FileInputStream fis = new FileInputStream(&quot;../Shouvik_Dutta.ser&quot;);</span>
+<span class="nc" id="L166">                ois = new ObjectInputStream(fis);</span>
+<span class="nc" id="L167">                ds=(Data_Store)ois.readObject();</span>
+<span class="nc" id="L168">                return ds;</span>
+<span class="nc" id="L169">        }catch(IOException e){</span>
+<span class="nc" id="L170">                System.err.println(&quot;Nothing to restore.&quot;);</span>
+        } 
+<span class="nc" id="L172">        catch(ClassNotFoundException e) {</span>
+<span class="nc" id="L173">                System.err.println(&quot;ClassNotFoundException caught in restoreClubState()&quot;);</span>
+        }
+        finally{
+<span class="nc bnc" id="L176" title="All 8 branches missed.">            if (ois != null)</span>
+<span class="nc" id="L177">                ois.close();</span>
+        }
+<span class="nc" id="L179">        return ds;</span>
+    }  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

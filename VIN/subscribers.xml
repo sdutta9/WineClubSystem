@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<subscribers>
+	<subscriber>
+		<name>Jane Roe</name>
+		<street>330 S Federal ST</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>60616</zip>
+		<email>jane.roe@example.com</email>
+		<phone>123-456-7890</phone>
+		<twitter></twitter>
+		<facebook>a</facebook>
+	</subscriber>
+	<subscriber>
+		<name>Tony Roe</name>
+		<street>330 S Federal ST</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>60616</zip>
+		<email>tony.roe@example.com</email>
+		<phone>123-456-7777</phone>
+		<twitter>@tonyroe</twitter>
+		<facebook></facebook>
+	</subscriber>
+</subscribers>

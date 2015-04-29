@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<Wines>
+	<Wine>
+		<variety>RED</variety>
+		<wine_type>TABLE</wine_type>
+		<label_name>The Mission</label_name>
+		<grape>Merlot</grape>
+		<region>Napa</region>
+		<country>USA</country>
+		<maker>Sterling</maker>
+		<year>2014</year>
+	</Wine>
+	<Wine>
+		<variety>RED</variety>
+		<wine_type>TABLE</wine_type>
+		<label_name>Joseph Phelps Cabernet Sauvignon 2012</label_name>
+		<grape>Cabernet Sauvignon</grape>
+		<region>Napa</region>
+		<country>USA</country>
+		<maker>Joseph Phelps</maker>
+		<year>2012</year>
+	</Wine>	
+	<Wine>
+		<variety>RED</variety>
+		<wine_type>TABLE</wine_type>
+		<label_name>Round Pond Estate Rutherford</label_name>
+		<grape>Cabernet Sauvignon</grape>
+		<region>Napa</region>
+		<country>USA</country>
+		<maker>Rutherford</maker>
+		<year>2014</year>
+	</Wine>
+	<Wine>
+		<variety>WHITE</variety>
+		<wine_type>SPARKLING</wine_type>
+		<label_name>Dona Paula Red Label</label_name>
+		<grape>Bordeaux</grape>
+		<region> </region>
+		<country>Argentina</country>
+		<maker>Dona Paula</maker>
+		<year>2013</year>
+	</Wine>
+	<Wine>
+		<variety>WHITE</variety>
+		<wine_type>SPARKLING</wine_type>
+		<label_name>Schug Sonoma Coast Pinot Noir</label_name>
+		<grape>Pinot Noir</grape>
+		<region>Sonoma Valley</region>
+		<country>USA</country>
+		<maker>Walter Schug</maker>
+		<year>2012</year>
+	</Wine>
+	<Wine>
+		<variety>WHITE</variety>
+		<wine_type>SPARKLING</wine_type>
+		<label_name>Caymus White Selection Cabernet Sauvignon</label_name>
+		<grape>Cabernet Sauvignon</grape>
+		<region>Napa Valley</region>
+		<country>USA</country>
+		<maker>Charles F. Wagner</maker>
+		<year>2013</year>
+	</Wine>
+</Wines>

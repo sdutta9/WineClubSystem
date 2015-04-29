@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Helper_Delivery.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Helper_Delivery.java</span></div><h1>Helper_Delivery.java</h1><pre class="source lang-java linenums">
+<span class="nc" id="L2">public class Helper_Delivery {</span>
+
+    public static void viewDeliveryTime(Data_Store ds, String[] args) {
+<span class="nc" id="L5">        String uid=null;</span>
+<span class="nc bnc" id="L6" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L7" title="All 6 branches missed.">            switch(args[i].toLowerCase()){                   </span>
+<span class="nc" id="L8">                case &quot;-uid&quot;:    uid=args[++i];</span>
+<span class="nc" id="L9">                                break;</span>
+<span class="nc" id="L10">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L11">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L14">        ViewDeliveryTimeRequest a = new ViewDeliveryTime(uid);</span>
+<span class="nc" id="L15">        ObjectResponse r = a.viewDeliveryTime(ds);</span>
+<span class="nc" id="L16">        r.printResponse();    </span>
+<span class="nc" id="L17">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

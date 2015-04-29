@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Helper_Subscriber.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Helper_Subscriber.java</span></div><h1>Helper_Subscriber.java</h1><pre class="source lang-java linenums">
+<span class="nc" id="L2">public class Helper_Subscriber {</span>
+
+    public static void addSubscriber(Data_Store ds, String[] args) {
+<span class="nc" id="L5">        String str =null, city=null, state=null, zip=null, name=null, email=null;</span>
+<span class="nc" id="L6">        String phone=null,tw=&quot; &quot;, fb=&quot; &quot;;</span>
+        
+<span class="nc bnc" id="L8" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L9" title="All 38 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L10">                case &quot;-n&quot;:  name=args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L12" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L13" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L14">                                        break;</span>
+                                    else
+<span class="nc" id="L16">                                        name+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L22">                case &quot;-e&quot;:  email = args[++i];</span>
+<span class="nc" id="L23">                            break;</span>
+<span class="nc" id="L24">                case &quot;-a&quot;:  str = args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L28">                                        break;</span>
+                                    else
+<span class="nc" id="L30">                                        str+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L36">                case &quot;-c&quot;:  city = args[++i];</span>
+<span class="nc" id="L37">                            break;</span>
+<span class="nc" id="L38">                case &quot;-s&quot;:  state = args[++i];</span>
+<span class="nc" id="L39">                            break;</span>
+<span class="nc" id="L40">                case &quot;-z&quot;:  zip = args[++i];</span>
+<span class="nc" id="L41">                            break;</span>
+<span class="nc" id="L42">                case &quot;-h&quot;:  phone = args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L46">                                        break;</span>
+                                    else
+<span class="nc" id="L48">                                        phone+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L54">                case &quot;-f&quot;:  fb = args[++i];</span>
+<span class="nc" id="L55">                            break;</span>
+<span class="nc" id="L56">                case &quot;-t&quot;:  tw = args[++i];</span>
+<span class="nc" id="L57">                            break;</span>
+<span class="nc" id="L58">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L59">                            System.exit(0);</span>
+            }
+        }
+<span class="nc" id="L62">        AddSubscriberRequest a = new AddSubscriber(str, city, state, zip, name, email, phone, tw, fb);</span>
+<span class="nc" id="L63">        ObjectResponse r = a.addAccount(ds);</span>
+<span class="nc" id="L64">        r.printResponse(); </span>
+<span class="nc" id="L65">    }</span>
+   
+    public static void viewSubscriber(Data_Store ds, String[] args) {
+<span class="nc" id="L68">        String uid=null;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if(args.length &gt; 3){</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if(&quot;-uid&quot;.equals(args[2].toLowerCase()))</span>
+<span class="nc" id="L71">                uid = args[3];</span>
+            else{
+<span class="nc" id="L73">                System.out.println(&quot;Error: Cannot recognize [&quot;+args[2]+&quot;] command&quot;);</span>
+<span class="nc" id="L74">                System.exit(0);</span>
+            }
+<span class="nc" id="L76">            ViewSubscriberRequest a = new ViewSubscriber(uid);</span>
+<span class="nc" id="L77">            ObjectResponse r = a.viewAccount(ds);</span>
+<span class="nc" id="L78">            r.printResponse();</span>
+<span class="nc" id="L79">        }</span>
+        else{          
+<span class="nc" id="L81">            System.out.println(&quot;Error: Invalid command&quot;);</span>
+<span class="nc" id="L82">            System.exit(0);</span>
+        }
+<span class="nc" id="L84">    }</span>
+    public static void modifySubscriber(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L87">        String uid = null, name=null, email=null, phone=null,tw=null, fb=null;</span>
+        
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L90" title="All 26 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L91">                case &quot;-uid&quot;:uid = args[++i];</span>
+<span class="nc" id="L92">                            break;                            </span>
+<span class="nc" id="L93">                case &quot;-n&quot;:  name=args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L97">                                        break;</span>
+                                    else
+<span class="nc" id="L99">                                        name+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L105">                case &quot;-e&quot;:  email = args[++i];</span>
+<span class="nc" id="L106">                            break;</span>
+<span class="nc" id="L107">                case &quot;-h&quot;:  phone = args[++i];</span>
+                            for(;;){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">                                if(i&lt;args.length-1){</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                                    if(Validator.isCommand(args[i+1]))</span>
+<span class="nc" id="L111">                                        break;</span>
+                                    else
+<span class="nc" id="L113">                                        phone+=&quot; &quot;+args[++i];</span>
+                                }
+                                else
+                                    break;                            
+                            }
+                            break;
+<span class="nc" id="L119">                case &quot;-f&quot;:  fb = args[++i];</span>
+<span class="nc" id="L120">                            break;</span>
+<span class="nc" id="L121">                case &quot;-t&quot;:  tw = args[++i];</span>
+<span class="nc" id="L122">                            break;</span>
+<span class="nc" id="L123">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L124">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L127">        ModifySubscriberRequest a = new ModifySubscriber(uid,name, email, phone, tw, fb);</span>
+<span class="nc" id="L128">        ObjectResponse r = a.modifyAccount(ds);</span>
+<span class="nc" id="L129">        r.printResponse();</span>
+<span class="nc" id="L130">    }</span>
+
+    public static void loadSubscriber(Data_Store ds, String[] args) {
+<span class="nc" id="L133">        String filename=null;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if(args.length &gt; 3){</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if(&quot;-f&quot;.equals(args[2].toLowerCase())){</span>
+<span class="nc" id="L136">                filename =args[3];</span>
+            }
+            else{
+<span class="nc" id="L139">                System.out.println(&quot;Error: Cannot recognize [&quot;+args[2]+&quot;] command&quot;);</span>
+<span class="nc" id="L140">                System.exit(0);</span>
+            }
+<span class="nc" id="L142">            LoadSubscriberRequest a = new LoadSubscriber(filename);</span>
+<span class="nc" id="L143">            ObjectResponse r = a.loadAccount(ds);</span>
+<span class="nc" id="L144">            r.printResponse();</span>
+<span class="nc" id="L145">        }</span>
+        else{          
+<span class="nc" id="L147">            System.out.println(&quot;Error: Missing values in function argument&quot;);</span>
+<span class="nc" id="L148">            System.exit(0);</span>
+        }
+<span class="nc" id="L150">    }</span>
+    public static void changeWineMix(Data_Store ds, String[] args){
+<span class="nc" id="L152">        String subid=null, type=null;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L154" title="All 10 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L155">                case &quot;-uid&quot;: subid = args[++i];</span>
+<span class="nc" id="L156">                            break;                            </span>
+<span class="nc" id="L157">                case &quot;-wt&quot;:  type=args[++i];</span>
+<span class="nc" id="L158">                            break;                </span>
+<span class="nc" id="L159">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L160">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L163">        ChangeWinePreferenceRequest a = new ChangeWinePreference(subid, type);</span>
+<span class="nc" id="L164">        ObjectResponse r = a.changeWinePreference(ds);</span>
+<span class="nc" id="L165">        r.printResponse();</span>
+<span class="nc" id="L166">    }</span>
+    public static void searchAccount(Data_Store ds, String[] args){
+<span class="nc" id="L168">        String subid=null, type=null;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L170" title="All 10 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L171">                case &quot;-uid&quot;: subid = args[++i];</span>
+<span class="nc" id="L172">                            break;                            </span>
+<span class="nc" id="L173">                case &quot;-wt&quot;:  type=args[++i];</span>
+<span class="nc" id="L174">                            break;                </span>
+<span class="nc" id="L175">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L176">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L179">        SearchSubscriberRequest a = new SearchSubscriber(subid, type);</span>
+<span class="nc" id="L180">        ObjectResponse r = a.searchAccount(ds);</span>
+<span class="nc" id="L181">        r.printResponse();</span>
+<span class="nc" id="L182">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

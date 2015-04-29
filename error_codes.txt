@@ -1,0 +1,47 @@
+1000 - Name must be provided
+1001 - Bad name
+1002 - Email address must be provided
+1003 - Invalid email address
+1004 - Address must be provided
+1005 - Bad address
+1006 - City must be provided
+1007 - Bad city
+1008 - State must be provided
+1009 - We may not ship to this state
+1010 - ZIP code must be provided
+1011 - Bad ZIP code
+1012 - Phone number must be provided
+1013 - Invalid Subscriber ID
+1014 - An account with this email address exists
+1015 - File name must be provided
+1016 - File not found
+1017 - An admin with this name exists
+1018 - Type must be provided
+1019 - Type can be either RW, AW, AR.
+1020 - Selection month and year must be provided
+1021 - Selection month and year must be yyyy-mm format
+1022 - File contains errors. Cannot load.
+1023 - Invalid Admin ID
+1024 - No data for Selection month and year.(replaced to: Invalid MonthlySelection ID)
+1025 - Invalid Shipment ID
+1026 - Shipment already delivered cannot cancel
+1027 - Shipment has already cancelled
+1028 - Cannot add receipt as Shipment either Delivered or Cancelled
+1029 - Invalid Receipt ID
+1030 - No Shipment remaining to be delivered
+1031 - Wine ID must be provided
+1032 - Invalid Wine ID
+1033 - Subscriber ID must be provided
+1034 - Rating must be provided
+1035 - Rating must be on a scale of 10 (excellent wine) to 1 (a tad above vinegar)
+1036 - Admin ID must be provided
+1037 - Invalid Date. It must be in yyyymmdd format
+1038 - Either ShipmentID or Wine ID must be provided
+1039 - Note ID must be provided
+1040 - Invalid Note ID
+1041 - Note content must be provided
+1042 - Either Shipment ID, Wine ID or Note ID should be provided
+1043 - Admin ID must be provided
+1044 - Shipment ID must be provided
+1045 - Monthly Selection already added for the given wine type
+1046 - Receiver Name must be provided

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Subscriber.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Subscriber.java</span></div><h1>Subscriber.java</h1><pre class="source lang-java linenums">
+import java.util.Date;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.YearMonth;
+import java.util.Calendar;
+
+public class Subscriber implements java.io.Serializable {
+    private String name, email, phone, twitter, facebook;
+    private Address address;
+    private MonthlySelectionType mst;
+    private int ID;
+    private boolean deactivate;
+    private Date joinDate;
+    private Date deliveryDt;
+    
+<span class="fc" id="L18">    public Subscriber() {</span>
+<span class="fc" id="L19">    	this.name = &quot;Jane Doe&quot;;</span>
+<span class="fc" id="L20">    	this.email = &quot;jane.doe@example.com&quot;;</span>
+<span class="fc" id="L21">    	this.phone = &quot;1234567890&quot;;</span>
+<span class="fc" id="L22">    	this.address = new Address();</span>
+<span class="fc" id="L23">    	this.mst = MonthlySelectionType.RW;</span>
+<span class="fc" id="L24">    	this.ID = -1;</span>
+<span class="fc" id="L25">        this.deactivate =  false;</span>
+<span class="fc" id="L26">        this.joinDate = new Date();</span>
+<span class="fc" id="L27">        Calendar cal =Calendar.getInstance();</span>
+<span class="fc" id="L28">        cal.setTime(this.joinDate);    </span>
+<span class="fc" id="L29">        cal.add( Calendar.DATE, 2 );         </span>
+<span class="fc" id="L30">        this.deliveryDt =  cal.getTime(); </span>
+<span class="fc" id="L31">        this.twitter = &quot; &quot;;</span>
+<span class="fc" id="L32">    	this.facebook = &quot; &quot;;</span>
+<span class="fc" id="L33">    }</span>
+<span class="nc" id="L34">    public Subscriber (String name, String email, String phone, Address address) {</span>
+<span class="nc" id="L35">    	this.name = name;</span>
+<span class="nc" id="L36">    	this.email = email;</span>
+<span class="nc" id="L37">    	this.phone = phone.replaceAll(&quot;[\\s\\-()]&quot;, &quot;&quot;); // drop all non-digit characters</span>
+<span class="nc" id="L38">    	this.address = address;</span>
+<span class="nc" id="L39">    	this.mst = MonthlySelectionType.RW;</span>
+<span class="nc" id="L40">    	this.ID = IdGenerator.newID();</span>
+<span class="nc" id="L41">        this.twitter = &quot; &quot;;</span>
+<span class="nc" id="L42">    	this.facebook = &quot; &quot;;</span>
+<span class="nc" id="L43">        this.deactivate = false;</span>
+<span class="nc" id="L44">        this.joinDate = new Date();</span>
+<span class="nc" id="L45">        Calendar cal =Calendar.getInstance();</span>
+<span class="nc" id="L46">        cal.setTime(this.joinDate);    </span>
+<span class="nc" id="L47">        cal.add( Calendar.DATE, 2 );         </span>
+<span class="nc" id="L48">        this.deliveryDt =  cal.getTime(); </span>
+<span class="nc" id="L49">    }</span>
+<span class="fc" id="L50">    public Subscriber (String name, String email, String phone, Address address, String fb, String tw) {</span>
+<span class="fc" id="L51">    	this.name = name;</span>
+<span class="fc" id="L52">    	this.email = email;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if(phone!= null)</span>
+<span class="fc" id="L54">            this.phone = phone.replaceAll(&quot;[\\s\\-()]&quot;, &quot;&quot;); // drop all non-digit characters</span>
+    	
+<span class="fc" id="L56">        this.address = address;</span>
+<span class="fc" id="L57">    	this.twitter = tw;</span>
+<span class="fc" id="L58">    	this.facebook = fb;</span>
+<span class="fc" id="L59">        this.mst = MonthlySelectionType.RW;</span>
+<span class="fc" id="L60">    	this.ID = IdGenerator.newID();</span>
+<span class="fc" id="L61">        this.deactivate = false;</span>
+<span class="fc" id="L62">        this.joinDate = new Date();</span>
+<span class="fc" id="L63">        Calendar cal =Calendar.getInstance();</span>
+<span class="fc" id="L64">        cal.setTime(this.joinDate);    </span>
+<span class="fc" id="L65">        cal.add( Calendar.DATE, 2 );         </span>
+<span class="fc" id="L66">        this.deliveryDt =  cal.getTime(); </span>
+<span class="fc" id="L67">    }</span>
+    
+    public String getDow(){
+<span class="fc" id="L70">        DateFormat ft=new SimpleDateFormat(&quot;EEEE&quot;); </span>
+<span class="fc" id="L71">        return ft.format(this.deliveryDt);</span>
+    }
+    public String getTod(){
+<span class="fc" id="L74">        DateFormat ft=new SimpleDateFormat(&quot;a&quot;); </span>
+<span class="fc" id="L75">        return ft.format(this.deliveryDt);</span>
+    }
+    public String getJoinDate(){
+<span class="fc" id="L78">        String DATE_FORMAT = &quot;yyyyMMdd&quot;;</span>
+<span class="fc" id="L79">        SimpleDateFormat sdf =new SimpleDateFormat(DATE_FORMAT);</span>
+<span class="fc" id="L80">        return sdf.format(joinDate);</span>
+    }
+    
+    public String getTwitter() {
+<span class="fc" id="L84">        return this.twitter;</span>
+    }
+    public String getFacebook() {
+<span class="fc" id="L87">        return this.facebook;</span>
+    }
+    
+    public void setNextDeliveryDt(){
+<span class="fc" id="L91">        Calendar cal =Calendar.getInstance();</span>
+<span class="fc" id="L92">        cal.setTime(this.deliveryDt);    </span>
+<span class="fc" id="L93">        cal.add( Calendar.MONTH, 1 );         </span>
+<span class="fc" id="L94">        this.deliveryDt =  cal.getTime(); </span>
+<span class="fc" id="L95">    }</span>
+    public Date getDeliveryDt(){
+<span class="fc" id="L97">        return this.deliveryDt;</span>
+    }
+    public YearMonth getDeliveryYearMonth(){
+<span class="fc" id="L100">        String DATE_FORMAT = &quot;yyyy-MM&quot;;</span>
+<span class="fc" id="L101">        SimpleDateFormat sdf =new SimpleDateFormat(DATE_FORMAT);</span>
+<span class="fc" id="L102">        YearMonth ym = YearMonth.parse(sdf.format(this.deliveryDt));</span>
+<span class="fc" id="L103">        return ym;</span>
+    }
+    public int getID() {
+<span class="fc" id="L106">    	return this.ID;</span>
+    }
+    public String getName(){
+<span class="fc" id="L109">        return this.name;</span>
+    }
+    public String getPhone(){
+<span class="fc" id="L112">        return this.phone;</span>
+    }
+    public String getEmail(){
+<span class="fc" id="L115">        return this.email;</span>
+    }
+    public Address getAddress(){
+<span class="nc" id="L118">        return this.address;</span>
+    }
+    public MonthlySelectionType getPreference() {
+<span class="fc" id="L121">    	return mst;</span>
+    }    
+    public void setPreference(MonthlySelectionType t) {
+<span class="fc" id="L124">    	this.mst = t;</span>
+<span class="fc" id="L125">    }</span>
+         
+    private boolean isMatchName(String kw) {
+<span class="fc" id="L128">    	String regex = &quot;(?i).*&quot; + kw + &quot;.*&quot;;</span>
+<span class="fc" id="L129">    	return this.name.matches(regex);</span>
+    }
+    private boolean isMatchEmail(String kw) {
+<span class="fc" id="L132">    	String regex = &quot;(?i).*&quot; + kw + &quot;.*&quot;;</span>
+<span class="fc" id="L133">    	return this.email.matches(regex);</span>
+    }
+    private boolean isMatchPhone(String kw) {
+<span class="nc" id="L136">    	String s = kw.replaceAll(&quot;[\\s\\-()]&quot;, &quot;&quot;); // drop all non-digit characters from search string</span>
+<span class="nc" id="L137">    	String regex = &quot;(?i).*&quot; + s + &quot;.*&quot;;</span>
+<span class="nc" id="L138">    	return this.phone.matches(regex);</span>
+    }
+    public boolean isMatch(String kw) {
+<span class="pc bpc" id="L141" title="5 of 6 branches missed.">    	if (isMatchName(kw) || isMatchEmail(kw) || isMatchPhone(kw)) {</span>
+<span class="fc" id="L142">    		return true;</span>
+<span class="nc" id="L143">    	} else return false;</span>
+    }
+    public boolean isMatch(Subscriber s) {
+<span class="pc bpc" id="L146" title="3 of 4 branches missed.">        if( isMatchEmail(s.email)|| isMatchPhone(s.phone))</span>
+<span class="fc" id="L147">            return true;</span>
+        else
+<span class="nc" id="L149">            return false;</span>
+    }
+    
+    public void updateInfo(String name, String email, String phone, String fb, String tw) {
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">    	if(name != null)</span>
+<span class="fc" id="L154">            this.name = name;</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">    	if(email != null)</span>
+<span class="fc" id="L156">            this.email = email;</span>
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">    	if(phone != null)</span>
+<span class="fc" id="L158">            this.phone = phone;</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">        if(tw !=null)</span>
+<span class="fc" id="L160">            this.twitter = tw;</span>
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">    	if(fb!=null)</span>
+<span class="fc" id="L162">            this.facebook = fb;</span>
+<span class="fc" id="L163">    }    </span>
+        
+    public boolean isDeactivated(){
+<span class="fc" id="L166">        return this.deactivate;</span>
+    }
+    public void deactivateSubscriber(){
+<span class="fc" id="L169">        this.deactivate = true;</span>
+<span class="fc" id="L170">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

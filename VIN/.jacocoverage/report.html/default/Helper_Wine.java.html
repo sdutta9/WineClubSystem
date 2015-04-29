@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Helper_Wine.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Helper_Wine.java</span></div><h1>Helper_Wine.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">public class Helper_Wine {</span>
+
+    public static void viewWines(Data_Store ds, String[] args) {
+<span class="nc" id="L4">        String wid=null;</span>
+<span class="nc bnc" id="L5" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L6" title="All 6 branches missed.">            switch(args[i].toLowerCase()){                   </span>
+<span class="nc" id="L7">                case &quot;-wid&quot;:    wid=args[++i];</span>
+<span class="nc" id="L8">                                break;</span>
+<span class="nc" id="L9">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L10">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L13">        ViewWinesRequest a = new ViewWines(wid);</span>
+<span class="nc" id="L14">        ObjectResponse r = a.viewWine(ds);</span>
+<span class="nc" id="L15">        r.printResponse();    </span>
+<span class="nc" id="L16">    }</span>
+    public static void rateWine(Data_Store ds, String[] args) {
+        
+<span class="nc" id="L19">        String uid = null, wid=null, rating=null;</span>
+        
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        for(int i=2; i&lt;args.length-1;i++){</span>
+<span class="nc bnc" id="L22" title="All 14 branches missed.">            switch(args[i].toLowerCase()){</span>
+<span class="nc" id="L23">                case &quot;-uid&quot;:    uid = args[++i];</span>
+<span class="nc" id="L24">                                break;                            </span>
+<span class="nc" id="L25">                case &quot;-wid&quot;:    wid=args[++i];</span>
+<span class="nc" id="L26">                                break;</span>
+<span class="nc" id="L27">                case &quot;-r&quot;:      rating=args[++i];</span>
+<span class="nc" id="L28">                                break;</span>
+<span class="nc" id="L29">                default:    System.out.println(&quot;Error: Cannot recognize [&quot;+args[i]+&quot;] command&quot;);</span>
+<span class="nc" id="L30">                            System.exit(0);</span>
+            } //end of switch           
+        }//end of for
+<span class="nc" id="L33">        RankWinesRequest a = new RankWines(uid, wid,rating);</span>
+<span class="nc" id="L34">        ObjectResponse r = a.rankWine(ds);</span>
+<span class="nc" id="L35">        r.printResponse();</span>
+<span class="nc" id="L36">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

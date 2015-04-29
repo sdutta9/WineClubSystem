@@ -1,0 +1,206 @@
+*******************************************************Subscriber**********************************************
+
+=============================
+Add Subscriber:
+-----------------------------
+java vin subscriber add -n <name> -e <email> -a <address> -c <city> -s <state> -z <zip> -h <phone> [ -f <facebook> ] [ -t <twitter> ]
+
+eg.
+java vin subscriber add -n shouvik -e shouvik@example.com -a 2951 south king drive -c chicago -s illinois -z 60616 -h 3126470594
+
+=============================
+Modify Subscriber:
+-----------------------------
+java vin subscriber modify -uid <ID> [ -n <name> ] [ -e <email> ] [ -h phone ] [ -f <facebook> ] [ -t <twitter> ]
+
+eg.
+java vin subscriber modify -uid 1 -n shouvik dutta -f shouvik.dutta
+
+=============================
+View Subscriber:
+-----------------------------
+java vin subscriber view -uid <ID>
+
+eg.
+java vin subscriber view -uid 5
+
+=============================
+Load Subscriber/s:
+-----------------------------
+java vin subscriber load -f <file>
+
+eg.
+java vin subscriber load -f ..\subscribers.xml
+
+=============================
+Search Subscriber details
+-----------------------------
+java vin subscriber search -uid <ID> [-wt <winetype>] ############### winetype remaining###########
+
+eg.
+java vin subscriber search -uid 10
+
+=============================
+Change Subscriber's Wine Mix
+-----------------------------
+java vin subscriber changemix -uid <ID> -wt <wintype>
+
+eg.
+java vin subscriber changemix -uid 5 -wt AR
+
+=============================
+******************************************************Admin****************************************
+
+=============================
+Add Admin
+-----------------------------
+java vin admin add -n <name>
+
+eg.
+java vin admin add -n default name
+=============================
+View Admin
+-----------------------------
+java vin admin view -aid <ID>
+
+eg.
+java vin admin view -aid 7
+=============================
+Modify Admin
+-----------------------------
+java vin admin modify -aid <ID> -n <name>
+
+eg
+java vin admin modify -aid 7 -n admin
+==============================
+Add Monthly Selection
+------------------------------
+java vin admin add_monthly_selection -aid <ID> -wt <winetype> -ym <yyyy-mm> -f <filename>
+
+eg.
+java vin admin add_monthly_selection -aid 7 -wt AR -ym 2015-04 -f ..\winelist_april2015.xml
+
+==============================
+View Monthly Selection
+------------------------------
+java vin admin view_monthly_selection [-id <MonthlySelection ID>]
+
+eg.
+java vin admin view_monthly_selection
+java vin admin view_monthly_selection -8
+
+==============================
+Revenue
+-----------------------------
+java vin admin revenue [-s <yyyymmdd>] [-e <yyyymmdd>]
+
+eg.
+java vin admin revenue
+java vin admin revenue -s 20150427
+
+==============================
+**************************************************Shipments************************************************
+==============================
+View Shipment
+------------------------------
+java vin Shipments view -uid <ID> [-sid <Shipment ID>]
+
+eg.
+java vin shipments view -uid 10
+java vin shipments view -uid 10 -sid 11
+
+===============================
+Cancel an undelivered Shipment
+-------------------------------
+java vin shipments cancel -uid <ID> -sid <Shipment ID>
+
+eg.
+java vin shipments cancel -uid 10 -sid 11
+
+===============================
+*****************************************************Wines**************************************************
+===============================
+View Wines
+-------------------------------
+java vin wines view -wid <Wine ID>
+
+eg.
+java vin wines view -wid 3
+
+===============================
+Rate Wines
+-------------------------------
+java vin wines rate -uid <ID> -wid <wine ID> -r <rating> (Rating values from 1 to 10)
+
+eg
+java vin wines rate -uid 10 -wid 4 -r 7
+
+==================================
+***************************************************************Delivery******************************************
+==================================
+View Delivery day and time of day
+----------------------------------
+java vin delivery view -uid <ID>
+
+eg.
+java vin delivery view -uid 10
+
+==================================
+*****************************************************************notes*********************************************
+==================================
+Add Note
+----------------------------------
+java vin notes add -uid <ID> [-sid <Shipment ID> OR -wid <Wine ID>] -c <NOTE>
+
+eg.
+java vin notes add -uid 8 -wid 2 -c This wine was too good.
+java vin notes add -uid 8 -sid 11 -c All wines in this shipment were not that great.
+
+==================================
+View Note
+----------------------------------
+java vin notes view -uid <ID> [-wid <Wine ID> OR -sid <Shipment ID> OR -nid<Node ID>]
+
+eg.
+java vin notes view -uid 1
+java vin notes view -uid 1 -wid 6
+
+==================================
+Modify Note
+----------------------------------
+java vin notes modify -uid <ID> -nid <Node ID> -c <Note>
+
+eg.
+java vin notes modify -uid 1 -nid 13 -c Pretty good wine.
+
+==================================
+Delete Note
+----------------------------------
+java vin notes delete -uid <ID> -nid<Node ID>
+
+eg.
+java vin notes delete -uid 1 -nid 13
+
+===================================
+********************************************Partner**********************************
+===================================
+Undelivered Subscriber_list
+-----------------------------------
+java vin partner subscriber_list
+
+===================================
+Add_receipt
+-----------------------------------
+java vin partner add_receipt -sid <shipment ID> -n <Receiver Name>
+
+eg.
+java vin partner add_receipt -sid 12 -n Thomas
+
+===================================
+View receipt
+-----------------------------------
+java vin partner view_receipt [-rid <receipt ID>]
+
+eg.
+java vin partner view_receipt
+java vin partner view_receipt -rid 15
