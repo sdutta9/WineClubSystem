@@ -42,7 +42,15 @@ public class SubscriberTest {
         String result = instance.getTod();
         assertEquals(expResult, result);
     }
-
+    @Test
+    public void testGetAddress() {
+        System.out.println("getAddress");
+        Subscriber instance = new Subscriber();
+        boolean expResult =false;
+        Address a =new Address();
+        Address result = instance.getAddress();
+        assertEquals(expResult, result.equals(a));
+    }
     @Test
     public void testGetJoinDate() {
         System.out.println("getJoinDate");
@@ -53,9 +61,6 @@ public class SubscriberTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getTwitter method, of class Subscriber.
-     */
     @Test
     public void testGetTwitter() {
         System.out.println("getTwitter");
@@ -161,7 +166,7 @@ public class SubscriberTest {
         Subscriber instance = new Subscriber();
         instance.setPreference(t);
     }
-
+    
     @Test
     public void testIsMatch_String() {
         System.out.println("isMatch");
@@ -171,9 +176,36 @@ public class SubscriberTest {
         boolean result = instance.isMatch(kw);
         assertEquals(expResult, result);
     }
-
+    @Test
+    public void testIsMatch_String1() {
+        System.out.println("isMatch");
+        String kw = "shouvik";
+        Subscriber instance = new Subscriber();
+        boolean expResult = false;
+        boolean result = instance.isMatch(kw);
+        assertEquals(expResult, result);
+    }
+    @Test
+    public void testIsMatch_String2() {
+        System.out.println("isMatchPhone");
+        String kw = "1234567890";
+        Subscriber instance = new Subscriber();
+        boolean expResult = true;
+        boolean result = instance.isMatch(kw);
+        assertEquals(expResult, result);
+    }
+    
     @Test
     public void testIsMatch_Subscriber() {
+        System.out.println("isMatch");
+        Subscriber s = new Subscriber("a","a@gmail.com","3126470594",new Address());
+        Subscriber instance = new Subscriber();
+        boolean expResult = false;
+        boolean result = instance.isMatch(s);
+        assertEquals(expResult, result);
+    }
+    @Test
+    public void testIsMatch_Subscriber2() {
         System.out.println("isMatch");
         Subscriber s = new Subscriber();
         Subscriber instance = new Subscriber();
@@ -203,9 +235,6 @@ public class SubscriberTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of deactivateSubscriber method, of class Subscriber.
-     */
     @Test
     public void testDeactivateSubscriber() {
         System.out.println("deactivateSubscriber");

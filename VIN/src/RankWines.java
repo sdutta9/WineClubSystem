@@ -33,14 +33,14 @@ public class RankWines extends RankWinesRequest {
         }
         
         int sid=Validator.isValidNumber(subid);
-        if(sid == -1){
+        if(!Validator.isValidSubscriber(sid, ds.subs)){
             error+="\t\t{\n";
             error+="\t\t\t\"code\": 1013,\n";
             error+="\t\t\t\"message\": \"Invalid Subscriber ID\"\n\t\t}\n";
             flag = 1;
         }                 
         int wineid =Validator.isValidNumber(wid);
-        if(wineid == -1){
+        if(!Validator.isValidWine(wineid, ds.winelist)){
             error+="\t\t{\n";
             error+="\t\t\t\"code\": 1032,\n";
             error+="\t\t\t\"message\": \"Invalid Wine ID\"\n\t\t}\n";
@@ -59,18 +59,16 @@ public class RankWines extends RankWinesRequest {
         }
         
         Iterator<Wine> it = ds.winelist.iterator();
+        String result = "{\n";
         while (it.hasNext()) {
             Wine w = it.next();
             if (w.getID() == wineid){
                 w.addRating(rate);
-                String result = "{\n";
                 result += "\t\"id\": " + w.getID() + ",\n";
                 result += "\t\"rating_count\": " + w.getNumberOfRatings() + ",\n";
-                result += "\t\"rating\": " + w.getRating()+ "\n}\n";
-                
-                return new ObjectResponse(wineid, true, result);
+                result += "\t\"rating\": " + w.getRating()+ "\n}\n";               
             }   
         }
-        return new ObjectResponse(1032,false, "Invalid Wine ID");
+        return new ObjectResponse(wineid, true, result);
     }
 }

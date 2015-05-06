@@ -1,77 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RankWines.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RankWines.java</span></div><h1>RankWines.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RankWines.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RankWines.java</span></div><h1>RankWines.java</h1><pre class="source lang-java linenums">
 import java.util.Iterator;
 
 public class RankWines extends RankWinesRequest {
     public RankWines(String sid,String wid, String rating) {
-<span class="nc" id="L6">	super(sid,wid,rating);</span>
-<span class="nc" id="L7">    }</span>
+<span class="fc" id="L6">	super(sid,wid,rating);</span>
+<span class="fc" id="L7">    }</span>
     @Override
     public ObjectResponse rankWine(Data_Store ds) {
-<span class="nc" id="L10">        String error=&quot;{\n\t\&quot;errors\&quot;: [\n&quot;;</span>
-<span class="nc" id="L11">        int flag =0;</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if(Validator.missingValue(subid)){</span>
-<span class="nc" id="L13">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L14">            error+=&quot;\t\t\t\&quot;code\&quot;: 1033,\n&quot;;</span>
-<span class="nc" id="L15">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Subscriber ID must be provided\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L16">            flag = 1;</span>
+<span class="fc" id="L10">        String error=&quot;{\n\t\&quot;errors\&quot;: [\n&quot;;</span>
+<span class="fc" id="L11">        int flag =0;</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if(Validator.missingValue(subid)){</span>
+<span class="fc" id="L13">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L14">            error+=&quot;\t\t\t\&quot;code\&quot;: 1033,\n&quot;;</span>
+<span class="fc" id="L15">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Subscriber ID must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L16">            flag = 1;</span>
         }
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(Validator.missingValue(wid)){</span>
-<span class="nc" id="L19">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L20">            error+=&quot;\t\t\t\&quot;code\&quot;: 1031,\n&quot;;</span>
-<span class="nc" id="L21">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Wine ID must be provided\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L22">            flag = 1;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(Validator.missingValue(wid)){</span>
+<span class="fc" id="L19">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L20">            error+=&quot;\t\t\t\&quot;code\&quot;: 1031,\n&quot;;</span>
+<span class="fc" id="L21">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Wine ID must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L22">            flag = 1;</span>
         }
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        if(Validator.missingValue(rating)){</span>
-<span class="nc" id="L25">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L26">            error+=&quot;\t\t\t\&quot;code\&quot;: 1034,\n&quot;;</span>
-<span class="nc" id="L27">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Rating must be provided\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L28">            flag = 1;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(Validator.missingValue(rating)){</span>
+<span class="fc" id="L25">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L26">            error+=&quot;\t\t\t\&quot;code\&quot;: 1034,\n&quot;;</span>
+<span class="fc" id="L27">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Rating must be provided\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L28">            flag = 1;</span>
         }
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(flag == 1){</span>
-<span class="nc" id="L31">            error+=&quot;]\n}\n&quot;;</span>
-<span class="nc" id="L32">            return new ObjectResponse(-1, false,error);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if(flag == 1){</span>
+<span class="fc" id="L31">            error+=&quot;]\n}\n&quot;;</span>
+<span class="fc" id="L32">            return new ObjectResponse(-1, false,error);</span>
         }
         
-<span class="nc" id="L35">        int sid=Validator.isValidNumber(subid);</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        if(sid == -1){</span>
-<span class="nc" id="L37">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L38">            error+=&quot;\t\t\t\&quot;code\&quot;: 1013,\n&quot;;</span>
-<span class="nc" id="L39">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Invalid Subscriber ID\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L40">            flag = 1;</span>
+<span class="fc" id="L35">        int sid=Validator.isValidNumber(subid);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(!Validator.isValidSubscriber(sid, ds.subs)){</span>
+<span class="fc" id="L37">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L38">            error+=&quot;\t\t\t\&quot;code\&quot;: 1013,\n&quot;;</span>
+<span class="fc" id="L39">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Invalid Subscriber ID\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L40">            flag = 1;</span>
         }                 
-<span class="nc" id="L42">        int wineid =Validator.isValidNumber(wid);</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(wineid == -1){</span>
-<span class="nc" id="L44">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L45">            error+=&quot;\t\t\t\&quot;code\&quot;: 1032,\n&quot;;</span>
-<span class="nc" id="L46">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Invalid Wine ID\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L47">            flag = 1;</span>
+<span class="fc" id="L42">        int wineid =Validator.isValidNumber(wid);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if(!Validator.isValidWine(wineid, ds.winelist)){</span>
+<span class="fc" id="L44">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L45">            error+=&quot;\t\t\t\&quot;code\&quot;: 1032,\n&quot;;</span>
+<span class="fc" id="L46">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Invalid Wine ID\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L47">            flag = 1;</span>
         }        
-<span class="nc" id="L49">        int rate=Validator.isValidNumber(rating);</span>
-<span class="nc bnc" id="L50" title="All 4 branches missed.">        if((rate&lt;1)||(rate&gt;10)){</span>
-<span class="nc" id="L51">            error+=&quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L52">            error+=&quot;\t\t\t\&quot;code\&quot;: 1035,\n&quot;;</span>
-<span class="nc" id="L53">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Rating must be on a scale of 10 (excellent wine) to 1 (a tad above vinegar)\&quot;\n\t\t}\n&quot;;</span>
-<span class="nc" id="L54">            flag = 1;</span>
+<span class="fc" id="L49">        int rate=Validator.isValidNumber(rating);</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if((rate&lt;1)||(rate&gt;10)){</span>
+<span class="fc" id="L51">            error+=&quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L52">            error+=&quot;\t\t\t\&quot;code\&quot;: 1035,\n&quot;;</span>
+<span class="fc" id="L53">            error+=&quot;\t\t\t\&quot;message\&quot;: \&quot;Rating must be on a scale of 10 (excellent wine) to 1 (a tad above vinegar)\&quot;\n\t\t}\n&quot;;</span>
+<span class="fc" id="L54">            flag = 1;</span>
         }
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(flag == 1){</span>
-<span class="nc" id="L57">            error+=&quot;]\n}\n&quot;;</span>
-<span class="nc" id="L58">            return new ObjectResponse(-1, false,error);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if(flag == 1){</span>
+<span class="fc" id="L57">            error+=&quot;]\n}\n&quot;;</span>
+<span class="fc" id="L58">            return new ObjectResponse(-1, false,error);</span>
         }
         
-<span class="nc" id="L61">        Iterator&lt;Wine&gt; it = ds.winelist.iterator();</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">        while (it.hasNext()) {</span>
-<span class="nc" id="L63">            Wine w = it.next();</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (w.getID() == wineid){</span>
-<span class="nc" id="L65">                w.addRating(rate);</span>
-<span class="nc" id="L66">                String result = &quot;{\n&quot;;</span>
-<span class="nc" id="L67">                result += &quot;\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
-<span class="nc" id="L68">                result += &quot;\t\&quot;rating_count\&quot;: &quot; + w.getNumberOfRatings() + &quot;,\n&quot;;</span>
-<span class="nc" id="L69">                result += &quot;\t\&quot;rating\&quot;: &quot; + w.getRating()+ &quot;\n}\n&quot;;</span>
-                
-<span class="nc" id="L71">                return new ObjectResponse(wineid, true, result);</span>
+<span class="fc" id="L61">        Iterator&lt;Wine&gt; it = ds.winelist.iterator();</span>
+<span class="fc" id="L62">        String result = &quot;{\n&quot;;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        while (it.hasNext()) {</span>
+<span class="fc" id="L64">            Wine w = it.next();</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            if (w.getID() == wineid){</span>
+<span class="fc" id="L66">                w.addRating(rate);</span>
+<span class="fc" id="L67">                result += &quot;\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
+<span class="fc" id="L68">                result += &quot;\t\&quot;rating_count\&quot;: &quot; + w.getNumberOfRatings() + &quot;,\n&quot;;</span>
+<span class="fc" id="L69">                result += &quot;\t\&quot;rating\&quot;: &quot; + w.getRating()+ &quot;\n}\n&quot;;               </span>
             }   
-<span class="nc" id="L73">        }</span>
-<span class="nc" id="L74">        return new ObjectResponse(1032,false, &quot;Invalid Wine ID&quot;);</span>
+<span class="fc" id="L71">        }</span>
+<span class="fc" id="L72">        return new ObjectResponse(wineid, true, result);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

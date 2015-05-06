@@ -95,7 +95,27 @@ public class ReceiptTest {
         boolean result = instance.isMatch(sid, createDate);
         assertEquals(expResult, result);
     }
-
+    @Test
+    public void testIsMatch1() {
+        System.out.println("isMatch");
+        int sid = 0;
+        Date createDate = new Date();
+        Receipt instance = new Receipt();
+        boolean expResult = false;
+        boolean result = instance.isMatch(sid, createDate);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIsMatch2() {
+        System.out.println("isMatch");
+        int sid = -1;
+        Date createDate = new Date(100);
+        Receipt instance = new Receipt();
+        boolean expResult = false;
+        boolean result = instance.isMatch(sid, createDate);
+        assertEquals(expResult, result);
+    }
     
     @Test
     public void testIsMatchID() {
@@ -106,13 +126,30 @@ public class ReceiptTest {
         boolean result = instance.isMatchID(receiptID);
         assertEquals(expResult, result);
     }
-
+    @Test
+    public void testIsMatchID1() {
+        System.out.println("isMatchID");
+        int receiptID = 0;
+        Receipt instance = new Receipt();
+        boolean expResult = false;
+        boolean result = instance.isMatchID(receiptID);
+        assertEquals(expResult, result);
+    }
     @Test
     public void testIsMatchSubID() {
         System.out.println("isMatchSubID");
         int subID = -1;
         Receipt instance = new Receipt();
         boolean expResult = true;
+        boolean result = instance.isMatchSubID(subID);
+        assertEquals(expResult, result);
+    }
+    @Test
+    public void testIsMatchSubID1() {
+        System.out.println("isMatchSubID");
+        int subID = 0;
+        Receipt instance = new Receipt();
+        boolean expResult = false;
         boolean result = instance.isMatchSubID(subID);
         assertEquals(expResult, result);
     }

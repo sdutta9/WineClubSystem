@@ -1,61 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddReceipt.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddReceipt.java</span></div><h1>AddReceipt.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddReceipt.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddReceipt.java</span></div><h1>AddReceipt.java</h1><pre class="source lang-java linenums">
 import java.util.Iterator;
 
 public class AddReceipt extends AddReceiptRequest {
     
     public AddReceipt(String shipid, String receiverName) {
-<span class="nc" id="L7">            super(shipid,receiverName);</span>
-<span class="nc" id="L8">    }</span>
+<span class="fc" id="L7">            super(shipid,receiverName);</span>
+<span class="fc" id="L8">    }</span>
 
     @Override
     public ObjectResponse addReceipt(Data_Store ds) {
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if(Validator.missingValue(ship_ID))</span>
-<span class="nc" id="L13">            return new ObjectResponse(1044, false, &quot;Shipment ID must be provided&quot;);</span>
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        if(Validator.missingValue(receiverNm))</span>
-<span class="nc" id="L15">            return new ObjectResponse(1046, false, &quot;Receiver Name must be provided&quot;);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if(Validator.missingValue(ship_ID))</span>
+<span class="fc" id="L13">            return new ObjectResponse(1044, false, &quot;Shipment ID must be provided&quot;);</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if(Validator.missingValue(receiverNm))</span>
+<span class="fc" id="L15">            return new ObjectResponse(1046, false, &quot;Receiver Name must be provided&quot;);</span>
         
-<span class="nc" id="L17">        int shipID = Validator.isValidNumber(ship_ID);</span>
+<span class="fc" id="L17">        int shipID = Validator.isValidNumber(ship_ID);</span>
         
-<span class="nc" id="L19">        Iterator&lt;Shipment&gt; it_ship = ds.shipments.iterator();</span>
-<span class="nc" id="L20">        Shipment s=null;</span>
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        while(it_ship.hasNext()){</span>
-<span class="nc" id="L22">            s = it_ship.next();</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            if(s.getShipID() == shipID)</span>
-<span class="nc" id="L24">                break;</span>
+<span class="fc" id="L19">        Iterator&lt;Shipment&gt; it_ship = ds.shipments.iterator();</span>
+<span class="fc" id="L20">        Shipment s=null;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        while(it_ship.hasNext()){</span>
+<span class="fc" id="L22">            s = it_ship.next();</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">            if(s.getShipID() == shipID)</span>
+<span class="fc" id="L24">                break;</span>
         }
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if(s == null)</span>
-<span class="nc" id="L27">            return new ObjectResponse(1025,false,&quot;Invalid Shipment ID&quot;); </span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        else if(s.getStatus() != ShipmentStatus.UNDELIVERED)</span>
-<span class="nc" id="L29">            return new ObjectResponse(1028,false,&quot;Cannot add receipt as Shipment either Delivered or Cancelled&quot;);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(s == null)</span>
+<span class="fc" id="L27">            return new ObjectResponse(1025,false,&quot;Invalid Shipment ID&quot;); </span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        else if(s.getStatus() != ShipmentStatus.UNDELIVERED)</span>
+<span class="fc" id="L29">            return new ObjectResponse(1028,false,&quot;Cannot add receipt as Shipment either Delivered or Cancelled&quot;);</span>
         else{
-<span class="nc" id="L31">            int subid =s.getSubID();</span>
-<span class="nc" id="L32">            Subscriber sub =null;</span>
-<span class="nc" id="L33">            String subname=null;</span>
-<span class="nc" id="L34">            Iterator&lt;Subscriber&gt; it_sub = ds.subs.iterator();</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">            while(it_sub.hasNext()){</span>
-<span class="nc" id="L36">                sub = it_sub.next();</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">                if(sub.getID()== subid){</span>
-<span class="nc" id="L38">                    subname = sub.getName();</span>
-<span class="nc" id="L39">                    break;</span>
+<span class="fc" id="L31">            int subid =s.getSubID();</span>
+<span class="fc" id="L32">            Subscriber sub =null;</span>
+<span class="fc" id="L33">            String subname=null;</span>
+<span class="fc" id="L34">            Iterator&lt;Subscriber&gt; it_sub = ds.subs.iterator();</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            while(it_sub.hasNext()){</span>
+<span class="fc" id="L36">                sub = it_sub.next();</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                if(sub.getID()== subid){</span>
+<span class="fc" id="L38">                    subname = sub.getName();</span>
+<span class="fc" id="L39">                    break;</span>
                 }
             }
-<span class="nc" id="L42">            Receipt tempreceipt = new Receipt(subid,subname,this.receiverNm);</span>
-<span class="nc" id="L43">            s.setReceiptID(tempreceipt.getReceiptID());</span>
-<span class="nc" id="L44">            s.setStatus(ShipmentStatus.DELIVERED);</span>
+<span class="fc" id="L42">            Receipt tempreceipt = new Receipt(subid,subname,this.receiverNm);</span>
+<span class="fc" id="L43">            s.setReceiptID(tempreceipt.getReceiptID());</span>
+<span class="fc" id="L44">            s.setStatus(ShipmentStatus.DELIVERED);</span>
             
-<span class="nc" id="L46">            sub.setNextDeliveryDt();</span>
-<span class="nc" id="L47">            Iterator&lt;MonthlySelection&gt; it_ms = ds.mselections.iterator();</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">            while(it_ms.hasNext()){</span>
-<span class="nc" id="L49">                MonthlySelection ms =it_ms.next();</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">                if(ms.isMatchMST(sub.getDeliveryYearMonth().toString(), sub.getPreference().name())){</span>
-<span class="nc" id="L51">                    Shipment temp = new Shipment(sub.getID(),sub.getDeliveryDt(),sub.getPreference());</span>
-<span class="nc" id="L52">                    ds.shipments.add(temp);</span>
-<span class="nc" id="L53">                    break;</span>
+<span class="fc" id="L46">            sub.setNextDeliveryDt();</span>
+<span class="fc" id="L47">            Iterator&lt;MonthlySelection&gt; it_ms = ds.mselections.iterator();</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            while(it_ms.hasNext()){</span>
+<span class="fc" id="L49">                MonthlySelection ms =it_ms.next();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">                if(ms.isMatchMST(sub.getDeliveryYearMonth().toString(), sub.getPreference().name())){</span>
+<span class="fc" id="L51">                    Shipment temp = new Shipment(sub.getID(),sub.getDeliveryDt(),sub.getPreference());</span>
+<span class="fc" id="L52">                    ds.shipments.add(temp);</span>
+<span class="fc" id="L53">                    break;</span>
                 }                    
-<span class="nc" id="L55">            }</span>
-<span class="nc" id="L56">            ds.receipts.add(tempreceipt);</span>
-<span class="nc" id="L57">            String output =&quot;{\n\t\&quot;id\&quot;: &quot;+tempreceipt.getReceiptID()+&quot;\n}\n&quot;;</span>
-<span class="nc" id="L58">            return new ObjectResponse(tempreceipt.getReceiptID(),true,output);</span>
+<span class="fc" id="L55">            }</span>
+<span class="fc" id="L56">            ds.receipts.add(tempreceipt);</span>
+<span class="fc" id="L57">            String output =&quot;{\n\t\&quot;id\&quot;: &quot;+tempreceipt.getReceiptID()+&quot;\n}\n&quot;;</span>
+<span class="fc" id="L58">            return new ObjectResponse(tempreceipt.getReceiptID(),true,output);</span>
         }               
     }        
 }

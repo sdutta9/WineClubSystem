@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddShipment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddShipment.java</span></div><h1>AddShipment.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AddShipment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">AddShipment.java</span></div><h1>AddShipment.java</h1><pre class="source lang-java linenums">
 import java.time.YearMonth;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -6,47 +6,47 @@ import java.util.Iterator;
 public class AddShipment extends AddShipmentRequest {
 
     public AddShipment(String mstype, String ymonth) {
-<span class="nc" id="L9">            super(mstype,ymonth);</span>
-<span class="nc" id="L10">    }</span>
+<span class="fc" id="L9">            super(mstype,ymonth);</span>
+<span class="fc" id="L10">    }</span>
 
     @Override
     public ObjectResponse addShipment(Data_Store ds) {
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        if(Validator.missingValue(this.mst))</span>
-<span class="nc" id="L15">            return new ObjectResponse(1018, false, &quot;Type must be provided&quot;);</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if(!Validator.isValidMSType(this.mst))</span>
-<span class="nc" id="L17">            return new ObjectResponse(1019, false,&quot;Type can be either RW, AW, AR.&quot;);</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(Validator.missingValue(this.ym))</span>
-<span class="nc" id="L19">            return new ObjectResponse(1020, false,&quot;Selection month and year must be provided&quot;);</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">        if(!Validator.isValidYearMonth(this.ym))</span>
-<span class="nc" id="L21">            return new ObjectResponse(1021, false,&quot;Selection month and year must be yyyy-mm format&quot;);</span>
-<span class="nc" id="L22">        YearMonth ymonth = YearMonth.parse(ym);</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if(Validator.missingValue(this.mst))</span>
+<span class="fc" id="L15">            return new ObjectResponse(1018, false, &quot;Type must be provided&quot;);</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if(!Validator.isValidMSType(this.mst))</span>
+<span class="fc" id="L17">            return new ObjectResponse(1019, false,&quot;Type can be either RW, AW, AR.&quot;);</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(Validator.missingValue(this.ym))</span>
+<span class="fc" id="L19">            return new ObjectResponse(1020, false,&quot;Selection month and year must be provided&quot;);</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if(!Validator.isValidYearMonth(this.ym))</span>
+<span class="fc" id="L21">            return new ObjectResponse(1021, false,&quot;Selection month and year must be yyyy-mm format&quot;);</span>
+<span class="fc" id="L22">        YearMonth ymonth = YearMonth.parse(ym);</span>
                 
-<span class="nc" id="L24">        Iterator&lt;Subscriber&gt; sub_itr = ds.subs.iterator();</span>
-<span class="nc" id="L25">        int shipmentCounter = 0;</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        while(sub_itr.hasNext()){</span>
-<span class="nc" id="L27">            Subscriber sub =sub_itr.next();</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">            if(!ymonth.equals(sub.getDeliveryYearMonth()))</span>
-<span class="nc" id="L29">                continue;</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            if(!sub.getPreference().name().equalsIgnoreCase(this.mst))</span>
-<span class="nc" id="L31">                continue;</span>
-<span class="nc" id="L32">            Iterator&lt;Shipment&gt; ship_itr = ds.shipments.iterator();</span>
-<span class="nc" id="L33">            boolean shipmentPresent = false;</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">            while(ship_itr.hasNext()){</span>
-<span class="nc" id="L35">                Shipment s = ship_itr.next();</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">                if(s.isMatch(sub.getID(), sub.getDeliveryDt())){</span>
-<span class="nc" id="L37">                    shipmentPresent = true;</span>
-<span class="nc" id="L38">                    break;</span>
+<span class="fc" id="L24">        Iterator&lt;Subscriber&gt; sub_itr = ds.subs.iterator();</span>
+<span class="fc" id="L25">        int shipmentCounter = 0;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        while(sub_itr.hasNext()){</span>
+<span class="fc" id="L27">            Subscriber sub =sub_itr.next();</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            if(!ymonth.equals(sub.getDeliveryYearMonth()))</span>
+<span class="fc" id="L29">                continue;</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            if(!sub.getPreference().name().equalsIgnoreCase(this.mst))</span>
+<span class="fc" id="L31">                continue;</span>
+<span class="fc" id="L32">            Iterator&lt;Shipment&gt; ship_itr = ds.shipments.iterator();</span>
+<span class="fc" id="L33">            boolean shipmentPresent = false;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            while(ship_itr.hasNext()){</span>
+<span class="fc" id="L35">                Shipment s = ship_itr.next();</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">                if(s.isMatch(sub.getID(), sub.getDeliveryDt())){</span>
+<span class="fc" id="L37">                    shipmentPresent = true;</span>
+<span class="fc" id="L38">                    break;</span>
                 }
-<span class="nc" id="L40">            }</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            if(shipmentPresent)</span>
-<span class="nc" id="L42">                continue;</span>
+<span class="fc" id="L40">            }</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if(shipmentPresent)</span>
+<span class="fc" id="L42">                continue;</span>
             else{
-<span class="nc" id="L44">                Shipment temp = new Shipment(sub.getID(),sub.getDeliveryDt(),sub.getPreference());</span>
-<span class="nc" id="L45">                ds.shipments.add(temp);</span>
-<span class="nc" id="L46">                shipmentCounter++;</span>
+<span class="fc" id="L44">                Shipment temp = new Shipment(sub.getID(),sub.getDeliveryDt(),sub.getPreference());</span>
+<span class="fc" id="L45">                ds.shipments.add(temp);</span>
+<span class="fc" id="L46">                shipmentCounter++;</span>
             }                
-<span class="nc" id="L48">        }</span>
-<span class="nc" id="L49">        return new ObjectResponse(shipmentCounter, true, &quot;Shipments Added.&quot;);</span>
+<span class="fc" id="L48">        }</span>
+<span class="fc" id="L49">        return new ObjectResponse(shipmentCounter, true, &quot;Shipments Added.&quot;);</span>
     }        
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

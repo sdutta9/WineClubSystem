@@ -1,3 +1,5 @@
-1)Go to src file using cmd
-2)type javac *.java
-3)follow commands as per commands.txt
+1)Navigate to src folder using terminal
+
+2)type javac *.java to compile all the java files
+
+3)Follow commands as per commands.txt file kept along with read me file.

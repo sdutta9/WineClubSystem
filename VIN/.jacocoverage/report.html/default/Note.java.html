@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Note.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Note.java</span></div><h1>Note.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Note.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Note.java</span></div><h1>Note.java</h1><pre class="source lang-java linenums">
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -72,22 +72,22 @@ public class Note implements java.io.Serializable {
 <span class="fc" id="L72">        this.content = content;</span>
 <span class="fc" id="L73">    }</span>
     public boolean isMatchWineType(int subID,WineVariety wt){
-<span class="pc bpc" id="L75" title="2 of 4 branches missed.">        if(isMatchSubID(subID)&amp;&amp; (winetype.equals(wt)))</span>
+<span class="pc bpc" id="L75" title="1 of 4 branches missed.">        if(isMatchSubID(subID)&amp;&amp; (winetype.equals(wt)))</span>
 <span class="fc" id="L76">            return true;</span>
         else
-<span class="nc" id="L78">            return false;</span>
+<span class="fc" id="L78">            return false;</span>
     }
     public boolean isMatchID(int noteID) {
-<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        if(this.ID == noteID)</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if(this.ID == noteID)</span>
 <span class="fc" id="L82">            return true;</span>
         else
-<span class="nc" id="L84">            return false;</span>
+<span class="fc" id="L84">            return false;</span>
     }
     public boolean isMatchSubID(int subID) {
-<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if(this.subID == subID)</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if(this.subID == subID)</span>
 <span class="fc" id="L88">            return true;</span>
         else
-<span class="nc" id="L90">            return false;</span>
+<span class="fc" id="L90">            return false;</span>
     }   
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

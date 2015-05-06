@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewWines.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewWines.java</span></div><h1>ViewWines.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewWines.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewWines.java</span></div><h1>ViewWines.java</h1><pre class="source lang-java linenums">
 import java.util.Iterator;
 
 public class ViewWines extends ViewWinesRequest {
     public ViewWines(String id) {
-<span class="nc" id="L6">	super(id);</span>
-<span class="nc" id="L7">    }</span>
+<span class="fc" id="L6">	super(id);</span>
+<span class="fc" id="L7">    }</span>
     @Override
     public ObjectResponse viewWine(Data_Store ds) {
-<span class="nc bnc" id="L10" title="All 2 branches missed.">        if(Validator.missingValue(wid))</span>
-<span class="nc" id="L11">            return new ObjectResponse(1031, false, &quot;Wine ID must be provided&quot;);</span>
-<span class="nc" id="L12">        int wineid =Validator.isValidNumber(wid);</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        if(wineid == -1)</span>
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        if(Validator.missingValue(wid))</span>
+<span class="fc" id="L11">            return new ObjectResponse(1031, false, &quot;Wine ID must be provided&quot;);</span>
+<span class="fc" id="L12">        int wineid =Validator.isValidNumber(wid);</span>
+<span class="pc bpc" id="L13" title="1 of 2 branches missed.">        if(wineid == -1)</span>
 <span class="nc" id="L14">            return new ObjectResponse(1032,false, &quot;Invalid Wine ID&quot;);</span>
         
-<span class="nc" id="L16">        Iterator&lt;Wine&gt; it = ds.winelist.iterator();</span>
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        while (it.hasNext()) {</span>
-<span class="nc" id="L18">            Wine w = it.next();</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">            if (w.getID() == wineid){</span>
-<span class="nc" id="L20">                String result = &quot;{\n&quot;;</span>
-<span class="nc" id="L21">                result += &quot;\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
-<span class="nc" id="L22">                result += &quot;\t\&quot;variety\&quot;: \&quot;&quot; + w.getVariety().name() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L23">                result += &quot;\t\&quot;wine_type\&quot;: \&quot;&quot; + w.getType().name() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L24">                result += &quot;\t\&quot;label_name\&quot;: \&quot;&quot; + w.getLabelName() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L25">                result += &quot;\t\&quot;grape\&quot;: \&quot;&quot; + w.getGrape() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L26">                result += &quot;\t\&quot;region\&quot;: \&quot;&quot; + w.getRegion() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L27">                result += &quot;\t\&quot;country\&quot;: \&quot;&quot; + w.getCountry() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L28">                result += &quot;\t\&quot;maker\&quot;: \&quot;&quot; + w.getMaker() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L29">                result += &quot;\t\&quot;year\&quot;: \&quot;&quot; + w.getYear() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L30">                result += &quot;\t\&quot;rating_count\&quot;: &quot; + w.getNumberOfRatings() + &quot;,\n&quot;;</span>
-<span class="nc" id="L31">                result += &quot;\t\&quot;rating\&quot;: &quot; + w.getRating()+ &quot;\n}\n&quot;;</span>
+<span class="fc" id="L16">        Iterator&lt;Wine&gt; it = ds.winelist.iterator();</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        while (it.hasNext()) {</span>
+<span class="fc" id="L18">            Wine w = it.next();</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">            if (w.getID() == wineid){</span>
+<span class="fc" id="L20">                String result = &quot;{\n&quot;;</span>
+<span class="fc" id="L21">                result += &quot;\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
+<span class="fc" id="L22">                result += &quot;\t\&quot;variety\&quot;: \&quot;&quot; + w.getVariety().name() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L23">                result += &quot;\t\&quot;wine_type\&quot;: \&quot;&quot; + w.getType().name() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L24">                result += &quot;\t\&quot;label_name\&quot;: \&quot;&quot; + w.getLabelName() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L25">                result += &quot;\t\&quot;grape\&quot;: \&quot;&quot; + w.getGrape() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L26">                result += &quot;\t\&quot;region\&quot;: \&quot;&quot; + w.getRegion() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L27">                result += &quot;\t\&quot;country\&quot;: \&quot;&quot; + w.getCountry() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L28">                result += &quot;\t\&quot;maker\&quot;: \&quot;&quot; + w.getMaker() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L29">                result += &quot;\t\&quot;year\&quot;: \&quot;&quot; + w.getYear() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L30">                result += &quot;\t\&quot;rating_count\&quot;: &quot; + w.getNumberOfRatings() + &quot;,\n&quot;;</span>
+<span class="fc" id="L31">                result += &quot;\t\&quot;rating\&quot;: &quot; + w.getRating()+ &quot;\n}\n&quot;;</span>
                 
-<span class="nc" id="L33">                return new ObjectResponse(wineid, true, result);</span>
+<span class="fc" id="L33">                return new ObjectResponse(wineid, true, result);</span>
             }   
 <span class="nc" id="L35">        }</span>
-<span class="nc" id="L36">        return new ObjectResponse(1032,false, &quot;Invalid Wine ID&quot;);</span>
+<span class="fc" id="L36">        return new ObjectResponse(1032,false, &quot;Invalid Wine ID&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

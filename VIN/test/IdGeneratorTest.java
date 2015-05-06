@@ -2,11 +2,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
-/**
- *
- * @author Shouvik
- */
 public class IdGeneratorTest {
     
     public IdGeneratorTest() {

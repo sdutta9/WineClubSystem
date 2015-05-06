@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<subscribers>
+	<subscriber>
+		<name>Jane Roe</name>
+		<street>330 S Federal ST</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>60616</zip>
+		<email>jane.roe@example.com</email>
+		<phone>123-456-7890</phone>
+		<twitter></twitter>
+		<facebook>a</facebook>
+	</subscriber>
+	<subscriber>
+		<name>James Bond</name>
+		<street>420 S King ST</street>
+		<city>Los Angles</city>
+		<state>CA</state>
+		<zip>65362</zip>
+		<email>james.bond@gmail.com</email>
+		<phone>925-437-5252</phone>
+		<twitter>@jb0007</twitter>
+		<facebook> </facebook>
+	</subscriber>
+	<subscriber>
+		<name>Tony Starc</name>
+		<street>458 N Queen DR</street>
+		<city>New York</city>
+		<state>NY</state>
+		<zip>67852</zip>
+		<email>tony.starc558@hotmail.com</email>
+		<phone>312-647-0594</phone>
+		<twitter>@tony.starc</twitter>
+		<facebook> </facebook>
+	</subscriber>
+	<subscriber>
+		<name>Bruce Wilish</name>
+		<street>870 W Luther DR</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>65694</zip>
+		<email>brwilish@yahoo.com</email>
+		<phone>898-998-6954</phone>
+		<twitter>@Bwilish</twitter>
+		<facebook> </facebook>
+	</subscriber>
+	<subscriber>
+		<name>William Dell</name>
+		<street>458 E Rockfield ST</street>
+		<city>Cleavland</city>
+		<state>OH</state>
+		<zip>66457</zip>
+		<email>w.del8596@yahoo.com</email>
+		<phone>545-456-5454</phone>
+		<twitter>@wdell</twitter>
+		<facebook> </facebook>
+	</subscriber>
+	<subscriber>
+		<name>shouvik</name>
+		<street>2951 S king Dr</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>60616</zip>
+		<email>d.patel@reddifmail.com</email>
+		<phone>778-545-5788</phone>
+		<twitter>@sd</twitter>
+		<facebook> </facebook>
+	</subscriber>
+</subscribers>

@@ -98,10 +98,18 @@ public class NoteTest {
         boolean result = instance.isMatchWineType(subID, wt);
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of isMatchID method, of class Note.
-     */
+    
+    @Test
+    public void testIsMatchWineType1() {
+        System.out.println("isMatchWineType");
+        int subID = 1;
+        WineVariety wt = WineVariety.RED;
+        Note instance = new Note(2,1,WineVariety.RED,"this is wine note");
+        boolean expResult = false;
+        boolean result = instance.isMatchWineType(subID, wt);
+        assertEquals(expResult, result);
+    }
+    
     @Test
     public void testIsMatchID() {
         System.out.println("isMatchID");
@@ -111,10 +119,16 @@ public class NoteTest {
         boolean result = instance.isMatchID(noteID);
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of isMatchSubID method, of class Note.
-     */
+    @Test
+    public void testIsMatchID1() {
+        System.out.println("isMatchID");
+        int noteID = 0;
+        Note instance = new Note();
+        boolean expResult = false;
+        boolean result = instance.isMatchID(noteID);
+        assertEquals(expResult, result);
+    }
+    
     @Test
     public void testIsMatchSubID() {
         System.out.println("isMatchSubID");

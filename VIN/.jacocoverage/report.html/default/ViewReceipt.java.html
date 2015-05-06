@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewReceipt.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewReceipt.java</span></div><h1>ViewReceipt.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewReceipt.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewReceipt.java</span></div><h1>ViewReceipt.java</h1><pre class="source lang-java linenums">
 import java.util.Iterator;
 
 public class ViewReceipt extends ViewReceiptRequest {
     public ViewReceipt(String rid) {
-<span class="nc" id="L6">	super(rid);</span>
-<span class="nc" id="L7">    }</span>
+<span class="fc" id="L6">	super(rid);</span>
+<span class="fc" id="L7">    }</span>
     @Override
     public ObjectResponse viewReceipt(Data_Store ds) {
         
-<span class="nc" id="L11">        int receiptid = Validator.isValidNumber(receipt_id);</span>
+<span class="fc" id="L11">        int receiptid = Validator.isValidNumber(receipt_id);</span>
         
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        if(receiptid == -1){</span>
-<span class="nc" id="L14">            Iterator&lt;Receipt&gt; it = ds.receipts.iterator();</span>
-<span class="nc" id="L15">            String output = &quot;{\n\t\&quot;receipts\&quot;: [\n&quot;;</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">            while(it.hasNext()){</span>
-<span class="nc" id="L17">                Receipt recpt= it.next();</span>
-<span class="nc" id="L18">                output += &quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L19">                output += &quot;\t\t\t\&quot;id\&quot;: &quot;+recpt.getReceiptID()+&quot;,\n&quot;;</span>
-<span class="nc" id="L20">                output += &quot;\t\t\t\&quot;date\&quot;: \&quot;&quot;+recpt.getCreationDate()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L21">                output += &quot;\t\t\t\&quot;subscriber\&quot;: &quot;+recpt.getSubID()+&quot;,\n&quot;;</span>
-<span class="nc" id="L22">                output += &quot;\t\t\t\&quot;name\&quot;: \&quot;&quot;+recpt.getSubName()+&quot;\&quot;\n&quot;;</span>
-<span class="nc" id="L23">                output += &quot;\t\t}\n&quot;;</span>
-<span class="nc" id="L24">            }</span>
-<span class="nc" id="L25">            output+=&quot;\t]\n}\n&quot;;</span>
-<span class="nc" id="L26">            return new ObjectResponse(receiptid, true, output);</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        if(receiptid == -1){</span>
+<span class="fc" id="L14">            Iterator&lt;Receipt&gt; it = ds.receipts.iterator();</span>
+<span class="fc" id="L15">            String output = &quot;{\n\t\&quot;receipts\&quot;: [\n&quot;;</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">            while(it.hasNext()){</span>
+<span class="fc" id="L17">                Receipt recpt= it.next();</span>
+<span class="fc" id="L18">                output += &quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L19">                output += &quot;\t\t\t\&quot;id\&quot;: &quot;+recpt.getReceiptID()+&quot;,\n&quot;;</span>
+<span class="fc" id="L20">                output += &quot;\t\t\t\&quot;date\&quot;: \&quot;&quot;+recpt.getCreationDate()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L21">                output += &quot;\t\t\t\&quot;subscriber\&quot;: &quot;+recpt.getSubID()+&quot;,\n&quot;;</span>
+<span class="fc" id="L22">                output += &quot;\t\t\t\&quot;name\&quot;: \&quot;&quot;+recpt.getSubName()+&quot;\&quot;\n&quot;;</span>
+<span class="fc" id="L23">                output += &quot;\t\t}\n&quot;;</span>
+<span class="fc" id="L24">            }</span>
+<span class="fc" id="L25">            output+=&quot;\t]\n}\n&quot;;</span>
+<span class="fc" id="L26">            return new ObjectResponse(receiptid, true, output);</span>
         }
         else{
-<span class="nc" id="L29">            Iterator&lt;Receipt&gt; it = ds.receipts.iterator();</span>
+<span class="fc" id="L29">            Iterator&lt;Receipt&gt; it = ds.receipts.iterator();</span>
             
-<span class="nc" id="L31">            Receipt recpt = null;</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">            while(it.hasNext()){</span>
-<span class="nc" id="L33">                recpt= it.next();</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">                if(recpt.getReceiptID()==receiptid)</span>
-<span class="nc" id="L35">                    break;</span>
+<span class="fc" id="L31">            Receipt recpt = null;</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            while(it.hasNext()){</span>
+<span class="fc" id="L33">                recpt= it.next();</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">                if(recpt.getReceiptID()==receiptid)</span>
+<span class="fc" id="L35">                    break;</span>
             }
-<span class="nc bnc" id="L37" title="All 2 branches missed.">            if(recpt == null)</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">            if(recpt == null)</span>
 <span class="nc" id="L38">                return new ObjectResponse(1029, false, &quot;Invalid Receipt ID&quot;);</span>
             else{
-<span class="nc" id="L40">                String output = &quot;{\n&quot;;</span>
-<span class="nc" id="L41">                output += &quot;\t\&quot;id\&quot;: &quot;+recpt.getReceiptID()+&quot;,\n&quot;;</span>
-<span class="nc" id="L42">                output += &quot;\t\&quot;date\&quot;: \&quot;&quot;+recpt.getCreationDate()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L43">                output += &quot;\t\&quot;time\&quot;: \&quot;&quot;+recpt.getCreationTime()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L44">                output += &quot;\t\&quot;subscriber\&quot;: &quot;+recpt.getSubID()+&quot;,\n&quot;;</span>
-<span class="nc" id="L45">                output += &quot;\t\&quot;name\&quot;: \&quot;&quot;+recpt.getSubName()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L46">                output += &quot;\t\&quot;received_by\&quot;: \&quot;&quot;+recpt.getReceiverName()+&quot;\&quot;\n&quot;;</span>
-<span class="nc" id="L47">                output += &quot;}\n&quot;;</span>
-<span class="nc" id="L48">                return new ObjectResponse(receiptid, true, output);</span>
+<span class="fc" id="L40">                String output = &quot;{\n&quot;;</span>
+<span class="fc" id="L41">                output += &quot;\t\&quot;id\&quot;: &quot;+recpt.getReceiptID()+&quot;,\n&quot;;</span>
+<span class="fc" id="L42">                output += &quot;\t\&quot;date\&quot;: \&quot;&quot;+recpt.getCreationDate()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L43">                output += &quot;\t\&quot;time\&quot;: \&quot;&quot;+recpt.getCreationTime()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L44">                output += &quot;\t\&quot;subscriber\&quot;: &quot;+recpt.getSubID()+&quot;,\n&quot;;</span>
+<span class="fc" id="L45">                output += &quot;\t\&quot;name\&quot;: \&quot;&quot;+recpt.getSubName()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L46">                output += &quot;\t\&quot;received_by\&quot;: \&quot;&quot;+recpt.getReceiverName()+&quot;\&quot;\n&quot;;</span>
+<span class="fc" id="L47">                output += &quot;}\n&quot;;</span>
+<span class="fc" id="L48">                return new ObjectResponse(receiptid, true, output);</span>
             }            
         }
     }

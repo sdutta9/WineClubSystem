@@ -1,85 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewShipment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;VIN&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewShipment.java</span></div><h1>ViewShipment.java</h1><pre class="source lang-java linenums">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewShipment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;vin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ViewShipment.java</span></div><h1>ViewShipment.java</h1><pre class="source lang-java linenums">
 import java.time.YearMonth;
 import java.util.Iterator;
 import java.util.List;
 
 public class ViewShipment extends ViewShipmentRequest {
     public ViewShipment(String sid,String shipid) {
-<span class="nc" id="L8">	super(sid,shipid);</span>
-<span class="nc" id="L9">    }</span>
+<span class="fc" id="L8">	super(sid,shipid);</span>
+<span class="fc" id="L9">    }</span>
     @Override
     public ObjectResponse viewShipment(Data_Store ds){
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if(Validator.missingValue(sub_id))</span>
-<span class="nc" id="L13">            return new ObjectResponse(1033,false,&quot;Subscriber ID must be provided&quot;);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if(Validator.missingValue(sub_id))</span>
+<span class="fc" id="L13">            return new ObjectResponse(1033,false,&quot;Subscriber ID must be provided&quot;);</span>
         
-<span class="nc" id="L15">        int subid = Validator.isValidNumber(sub_id);</span>
-<span class="nc" id="L16">        int shipid = Validator.isValidNumber(ship_id);</span>
+<span class="fc" id="L15">        int subid = Validator.isValidNumber(sub_id);</span>
+<span class="fc" id="L16">        int shipid = Validator.isValidNumber(ship_id);</span>
         
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(!Validator.isValidSubscriber(subid, ds.subs))</span>
-<span class="nc" id="L19">            return new ObjectResponse(1013,false,&quot;Invalid Subscriber ID&quot;);</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">        if(shipid == -1){</span>
-<span class="nc" id="L21">            Iterator&lt;Shipment&gt; ship_it = ds.shipments.iterator();</span>
-<span class="nc" id="L22">            String output = &quot;{\n\t\&quot;uid\&quot;: &quot;+subid+&quot;,\n\t\&quot;shipments\&quot;: [\n&quot;;</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            while(ship_it.hasNext()){</span>
-<span class="nc" id="L24">                Shipment s= ship_it.next();</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">                if(s.isMatchSubID(subid)){</span>
-<span class="nc" id="L26">                    YearMonth ym = s.getDeliveryYearMonth();</span>
-<span class="nc" id="L27">                    output += &quot;\t\t{\n&quot;;</span>
-<span class="nc" id="L28">                    output += &quot;\t\t\t\&quot;sid\&quot;: &quot;+s.getShipID()+&quot;,\n&quot;;</span>
-<span class="nc" id="L29">                    output += &quot;\t\t\t\&quot;selection_month\&quot;: \&quot;&quot;+ym.getMonth().name().substring(0, 3)+&quot;/&quot;+ym.getYear()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L30">                    output += &quot;\t\t\t\&quot;status\&quot;: \&quot;&quot;+s.getStatus().name().toLowerCase()+&quot;\&quot;\n&quot;;</span>
-<span class="nc" id="L31">                    output += &quot;\t\t}\n&quot;;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(!Validator.isValidSubscriber(subid, ds.subs))</span>
+<span class="fc" id="L19">            return new ObjectResponse(1013,false,&quot;Invalid Subscriber ID&quot;);</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if(shipid == -1){</span>
+<span class="fc" id="L21">            Iterator&lt;Shipment&gt; ship_it = ds.shipments.iterator();</span>
+<span class="fc" id="L22">            String output = &quot;{\n\t\&quot;uid\&quot;: &quot;+subid+&quot;,\n\t\&quot;shipments\&quot;: [\n&quot;;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            while(ship_it.hasNext()){</span>
+<span class="fc" id="L24">                Shipment s= ship_it.next();</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">                if(s.isMatchSubID(subid)){</span>
+<span class="fc" id="L26">                    YearMonth ym = s.getDeliveryYearMonth();</span>
+<span class="fc" id="L27">                    output += &quot;\t\t{\n&quot;;</span>
+<span class="fc" id="L28">                    output += &quot;\t\t\t\&quot;sid\&quot;: &quot;+s.getShipID()+&quot;,\n&quot;;</span>
+<span class="fc" id="L29">                    output += &quot;\t\t\t\&quot;selection_month\&quot;: \&quot;&quot;+ym.getMonth().name().substring(0, 3)+&quot;/&quot;+ym.getYear()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L30">                    output += &quot;\t\t\t\&quot;status\&quot;: \&quot;&quot;+s.getStatus().name().toLowerCase()+&quot;\&quot;\n&quot;;</span>
+<span class="fc" id="L31">                    output += &quot;\t\t}\n&quot;;</span>
                 }
-<span class="nc" id="L33">            }</span>
-<span class="nc" id="L34">            output+=&quot;\t]\n}\n&quot;;</span>
-<span class="nc" id="L35">            return new ObjectResponse(subid, true, output);</span>
+<span class="fc" id="L33">            }</span>
+<span class="fc" id="L34">            output+=&quot;\t]\n}\n&quot;;</span>
+<span class="fc" id="L35">            return new ObjectResponse(subid, true, output);</span>
         }
         else{
-<span class="nc" id="L38">            Iterator&lt;Shipment&gt; ship_it = ds.shipments.iterator();</span>
-<span class="nc" id="L39">            YearMonth ym=null;</span>
-<span class="nc" id="L40">            MonthlySelectionType mst=null;</span>
-<span class="nc" id="L41">            Shipment s=null;</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">            while(ship_it.hasNext()){</span>
-<span class="nc" id="L43">                s= ship_it.next();</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">                if(s.isMatchSubID(subid)){</span>
-<span class="nc" id="L45">                    ym = s.getDeliveryYearMonth();</span>
-<span class="nc" id="L46">                    mst= s.getMST();</span>
-<span class="nc" id="L47">                    break;</span>
+<span class="fc" id="L38">            Iterator&lt;Shipment&gt; ship_it = ds.shipments.iterator();</span>
+<span class="fc" id="L39">            YearMonth ym=null;</span>
+<span class="fc" id="L40">            MonthlySelectionType mst=null;</span>
+<span class="fc" id="L41">            Shipment s=null;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            while(ship_it.hasNext()){</span>
+<span class="fc" id="L43">                s= ship_it.next();</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">                if(s.isMatchSubID(subid)){</span>
+<span class="fc" id="L45">                    ym = s.getDeliveryYearMonth();</span>
+<span class="fc" id="L46">                    mst= s.getMST();</span>
+<span class="fc" id="L47">                    break;</span>
                 }
             }
-<span class="nc bnc" id="L50" title="All 2 branches missed.">            if(s == null)</span>
-<span class="nc" id="L51">               return new ObjectResponse(1025, false, &quot;Invalid Shipment ID&quot;);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if(s == null)</span>
+<span class="fc" id="L51">               return new ObjectResponse(1025, false, &quot;Invalid Shipment ID&quot;);</span>
             else{
-<span class="nc" id="L53">                String output = &quot;{\n\t\&quot;uid\&quot;: &quot;+subid+&quot;,\n&quot;;</span>
-<span class="nc" id="L54">                output+=&quot;\t\&quot;sid\&quot;: &quot;+shipid+&quot;,\n&quot;;</span>
-<span class="nc" id="L55">                output += &quot;\t\&quot;selection_month\&quot;: \&quot;&quot;+ym.getMonth().name().substring(0, 3)+&quot;/&quot;+ym.getYear()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L56">                output += &quot;\t\&quot;status\&quot;: \&quot;&quot;+s.getStatus().name().toLowerCase()+&quot;\&quot;\n&quot;;</span>
-<span class="nc" id="L57">                output +=&quot;\t\&quot;date\&quot;: \&quot;&quot;+s.getDeliveryDate()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L58">                output +=&quot;\t\&quot;type\&quot;: \&quot;&quot;+mst.name()+&quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L59">                output +=&quot;\t\&quot;wines\&quot;: [&quot;;</span>
-<span class="nc" id="L60">                Iterator&lt;MonthlySelection&gt; it = ds.mselections.iterator();</span>
-<span class="nc" id="L61">                List&lt;Wine&gt; wines = null;</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                while(it.hasNext()){</span>
-<span class="nc" id="L63">                    MonthlySelection ms =it.next();</span>
-<span class="nc bnc" id="L64" title="All 4 branches missed.">                    if(ms.isSameYearMonth(ym)&amp;&amp; mst.equals(ms.getMST())){</span>
-<span class="nc" id="L65">                        wines = ms.getWines();</span>
-<span class="nc" id="L66">                        break;</span>
+<span class="fc" id="L53">                String output = &quot;{\n\t\&quot;uid\&quot;: &quot;+subid+&quot;,\n&quot;;</span>
+<span class="fc" id="L54">                output+=&quot;\t\&quot;sid\&quot;: &quot;+shipid+&quot;,\n&quot;;</span>
+<span class="fc" id="L55">                output += &quot;\t\&quot;selection_month\&quot;: \&quot;&quot;+ym.getMonth().name().substring(0, 3)+&quot;/&quot;+ym.getYear()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L56">                output += &quot;\t\&quot;status\&quot;: \&quot;&quot;+s.getStatus().name().toLowerCase()+&quot;\&quot;\n&quot;;</span>
+<span class="fc" id="L57">                output +=&quot;\t\&quot;date\&quot;: \&quot;&quot;+s.getDeliveryDate()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L58">                output +=&quot;\t\&quot;type\&quot;: \&quot;&quot;+mst.name()+&quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L59">                output +=&quot;\t\&quot;wines\&quot;: [&quot;;</span>
+<span class="fc" id="L60">                Iterator&lt;MonthlySelection&gt; it = ds.mselections.iterator();</span>
+<span class="fc" id="L61">                List&lt;Wine&gt; wines = null;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                while(it.hasNext()){</span>
+<span class="fc" id="L63">                    MonthlySelection ms =it.next();</span>
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">                    if(ms.isSameYearMonth(ym)&amp;&amp; mst.equals(ms.getMST())){</span>
+<span class="fc" id="L65">                        wines = ms.getWines();</span>
+<span class="fc" id="L66">                        break;</span>
                     }
 <span class="nc" id="L68">                }</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">                if(wines != null){</span>
-<span class="nc" id="L70">                    Iterator&lt;Wine&gt; it_w = wines.iterator();</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">                    while(it_w.hasNext()){</span>
-<span class="nc" id="L72">                        Wine w = it_w.next();</span>
-<span class="nc" id="L73">                        output += &quot;\n\t\t{\n&quot;;</span>
-<span class="nc" id="L74">                        output += &quot;\t\t\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
-<span class="nc" id="L75">                        output += &quot;\t\t\t\&quot;label_name\&quot;: \&quot;&quot; + w.getLabelName() + &quot;\&quot;,\n&quot;;</span>
-<span class="nc" id="L76">                        output +=&quot;\t\t}\n&quot;;</span>
-<span class="nc" id="L77">                    }</span>
-<span class="nc" id="L78">                    output+=&quot;\t]\n}\n&quot;;</span>
-<span class="nc" id="L79">                }</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                if(wines != null){</span>
+<span class="fc" id="L70">                    Iterator&lt;Wine&gt; it_w = wines.iterator();</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">                    while(it_w.hasNext()){</span>
+<span class="fc" id="L72">                        Wine w = it_w.next();</span>
+<span class="fc" id="L73">                        output += &quot;\n\t\t{\n&quot;;</span>
+<span class="fc" id="L74">                        output += &quot;\t\t\t\&quot;id\&quot;: &quot; + w.getID() + &quot;,\n&quot;;</span>
+<span class="fc" id="L75">                        output += &quot;\t\t\t\&quot;label_name\&quot;: \&quot;&quot; + w.getLabelName() + &quot;\&quot;,\n&quot;;</span>
+<span class="fc" id="L76">                        output +=&quot;\t\t}\n&quot;;</span>
+<span class="fc" id="L77">                    }</span>
+<span class="fc" id="L78">                    output+=&quot;\t]\n}\n&quot;;</span>
+<span class="fc" id="L79">                }</span>
                 else
-<span class="nc" id="L81">                    output+=&quot;]\n}\n&quot;;</span>
-<span class="nc" id="L82">                return new ObjectResponse(subid, true, output);</span>
+<span class="fc" id="L81">                    output+=&quot;]\n}\n&quot;;</span>
+<span class="fc" id="L82">                return new ObjectResponse(subid, true, output);</span>
             }
         }
     }

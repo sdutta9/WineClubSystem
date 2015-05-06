@@ -52,13 +52,13 @@ public class ViewNote extends ViewNoteRequest {
             int wineid = Validator.isValidNumber(wine_id);
             int noteid = Validator.isValidNumber(note_id);
 
-            if ((wineid == -1) && (noteid == 1) && (!Validator.isValidShipment(shipid, ds.shipments))) {
+            if ((wineid == -1) && (noteid == -1) && (!Validator.isValidShipment(shipid, ds.shipments))) {
                 return new ObjectResponse(1025, false, "Invalid Shipment ID");
             }
-            if ((shipid == -1) && (noteid == 1) && (!Validator.isValidWine(wineid, ds.winelist))) {
+            if ((shipid == -1) && (noteid == -1) && (!Validator.isValidWine(wineid, ds.winelist))) {
                 return new ObjectResponse(1032, false, "Invalid Wine ID");
             }
-            if ((shipid == -1) && (wineid == 1) && (!Validator.isValidNote(noteid, ds.notes))) {
+            if ((shipid == -1) && (wineid == -1) && (!Validator.isValidNote(noteid, ds.notes))) {
                 return new ObjectResponse(1040, false, "Invalid Note ID");
             }
 
@@ -84,7 +84,8 @@ public class ViewNote extends ViewNoteRequest {
                     output += "\n\t]\n}\n";
                 }
                 return new ObjectResponse(shipid, true, output);
-            } else if ((shipid == -1) && (wineid != -1) && (noteid == -1)) {
+            } 
+            if ((shipid == -1) && (wineid != -1) && (noteid == -1)) {
                 //logic for displaying user's all wine related notes
                 Iterator<Note> it = ds.notes.iterator();
                 int flag = 0;
@@ -107,10 +108,10 @@ public class ViewNote extends ViewNoteRequest {
                     output += "\n\t]\n}\n";
                 }
                 return new ObjectResponse(shipid, true, output);
-            } else if ((shipid == -1) && (wineid == -1) && (noteid != -1)) {
+            } 
+            if ((shipid == -1) && (wineid == -1) && (noteid != -1)) {
                 //logic for displaying user's note based on note number.
                 Iterator<Note> it = ds.notes.iterator();
-                int flag = 0;
                 String output = "{";
                 while (it.hasNext()) {
                     Note note = it.next();
@@ -125,18 +126,12 @@ public class ViewNote extends ViewNoteRequest {
                         output += "\n\t\"date\": \"" + note.getCreationDate() + "\",";
                         output += "\n\t\"content\": \"" + note.getContent() + "\"";
                         output += "\n}\n";
-                        flag = 1;
                         break;
                     }
                 }
-                if (flag == 0) {
-                    return new ObjectResponse(1040, false, "Invalid Note ID");
-                } else {
-                    return new ObjectResponse(noteid, true, output);
-                }
-            } else {
-                return new ObjectResponse(1038, false, "Either Shipment ID, Wine ID or Note ID should be provided");
-            }
+                return new ObjectResponse(noteid, true, output);                
+            } 
         }
+        return null;
     }
 }

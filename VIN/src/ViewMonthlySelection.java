@@ -52,7 +52,10 @@ public class ViewMonthlySelection extends ViewMonthlySelectionRequest {
                 result += "\t\t}\n";
             }
             result+="\t]\n}\n";
-            return new ObjectResponse(ms.getID(), true, result);
+            if(ms != null)
+                return new ObjectResponse(ms.getID(), true, result);
+            else
+                return new ObjectResponse(999,false,"No MonthlySelection obj present");
         }
         
     }

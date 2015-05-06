@@ -22,7 +22,7 @@ public class ObjectResponse {
                     error+="\t\t\t\"code\":"+this.ID+",\n";
                     error+="\t\t\t\"message\": \""+this.description+"\"\n";
                     error+= "\t\t}\n\t]\n}\n";
-					System.out.print(error);
+                    System.out.print(error);
                 }
             }
 	}

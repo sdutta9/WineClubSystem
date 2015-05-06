@@ -25,14 +25,6 @@ public abstract class MonthlySelection implements java.io.Serializable {
         else
             return false;
     }
-    public boolean isMatch(String kw) {
-            Iterator<Wine> it = this.ms.iterator();
-            while (it.hasNext()) {
-                    Wine w = it.next();
-                    if (w.isMatch(kw)) return true;
-            }
-            return false;
-    }
 
     public MonthlySelection() {
             this.ym = YearMonth.now().plusMonths(1);	// next month's selection

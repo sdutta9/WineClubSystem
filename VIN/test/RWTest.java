@@ -3,10 +3,6 @@ import java.time.Year;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Shouvik
- */
 public class RWTest {
     
     public RWTest() {
@@ -24,7 +20,7 @@ public class RWTest {
         String maker = "Sterling";
         Year year = Year.parse("2011");
         Wine w = new Wine(wv, wt, labelName, grape, region, country, maker, year);
-        MonthlySelection instance = new AW();
+        MonthlySelection instance = new RW();
         instance.addWine(w);
         System.out.println(instance.hasWines());
         boolean result = true;
@@ -42,7 +38,7 @@ public class RWTest {
         Year year = Year.parse("2011");
         Wine w = new Wine(wv, wt, labelName, grape, region, country, maker, year);
         String ym = "2015-04";
-        MonthlySelection instance = new AW(ym,0);
+        MonthlySelection instance = new RW(ym,0);
         instance.addWine(w);
         System.out.println(instance.hasWines());
         boolean result = true;
